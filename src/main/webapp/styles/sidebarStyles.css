@@ -1,0 +1,69 @@
+/* Stylizacja paska bocznego */
+.sidebar {
+    width: 10%;
+    background-color: #335861;
+    padding: 20px;
+    height: 100vh; /* Zajmuje całą wysokość przeglądarki */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Umożliwia umieszczenie przycisków na górze i dole */
+}
+
+.sidebar .top-button {
+    margin-bottom: auto;
+}
+
+.sidebar .bottom-buttons {
+    display: flex;
+    flex-direction: column; /* Ustawia przyciski pionowo */
+}
+
+.sidebar form {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar button {
+    width: 100%;
+    background-color: #335861;
+    color: white;
+    border: none;
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none; /* Usunięcie domyślnego obramowania */
+}
+
+.sidebar button:hover {
+    background-color: #3f6c77; /* Zmiana koloru przy najechaniu */
+}
+
+.sidebar button:focus {
+    background-color: #4e8491; /* Zmiana koloru przy aktywnym elemencie */
+}
+
+.sidebar button:active {
+    background-color: #5e9dac; /* Zmiana koloru po kliknięciu */
+}
+
+/* Aktywny przycisk */
+.sidebar .active button {
+    background-color: #3a6570; /* Kolor dla aktywnego przycisku */
+    color: white;
+}
+
+.sidebar button {
+    background-color: #335861; /* Kolor dla nieaktywnego przycisku */
+    color: white;
+    border: none;
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none; /* Usunięcie domyślnego obramowania */
+}
+
+.sidebar button:hover {
+    background-color: #3f6c77; /* Zmiana koloru przy najechaniu */
+}

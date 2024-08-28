@@ -1,0 +1,110 @@
+/* Resetowanie domyślnych stylów przeglądarki */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Sprawia, że strona zajmuje całą wysokość przeglądarki */
+}
+
+.content {
+    width: 90%;
+    margin-top: 150px;
+}
+
+.books-section {
+    margin-top: 90px;
+    display: flex;
+    flex-wrap: wrap; /* Pozwala na zawijanie boksy w wypadku braku miejsca */
+    justify-content: space-around; /* Rozstawia boksy równomiernie */
+    gap: 5px; /* Odstęp między boksami */
+}
+
+.books-box {
+    flex: 1 1 45%; /* Każdy boks zajmuje do 45% szerokości kontenera */
+    max-width: 45%; /* Maksymalna szerokość boksu */
+    background-color: #4e8491; /* f4f4f4         4e8491*/
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Uwzględnia padding i border w szerokości */
+}
+
+.books-box h2 {
+    text-align: center;
+    font-size: 20px; /* Rozmiar czcionki nagłówka */
+    margin-bottom: 15px;
+}
+
+.books-container {
+    display: flex;
+    flex-wrap: wrap; /* Pozwala na zawijanie książek */
+    gap: 15px; /* Odstęp między książkami */
+}
+
+.book {
+    flex: 1 1 calc(20% - 15px); /* Każda książka zajmuje około jednej trzeciej szerokości kontenera, minus odstęp */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s;
+    box-sizing: border-box; /* Uwzględnia padding i border w szerokości */
+}
+
+.book img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.book-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.book-rating {
+    font-size: 12px;
+    color: #888;
+}
+
+.book:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.box {
+    width: 90%;
+    background-image: url('leaves-background.png');
+    /* url('leaves-background.png'); */
+    background-position: right; /* Position the first image at the top and the second at the bottom */
+    background-repeat: no-repeat; /* Ensure the images don't repeat */
+    background-size: contain; /* Adjusts the size of the background images */
+    background-color: white; /* Fallback color */
+    min-height: 100vh; /* Ensure the content section takes at least the full height of the viewport */
+    box-sizing: border-box;
+
+}

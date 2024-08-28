@@ -1,0 +1,77 @@
+/* Resetowanie domyślnych stylów przeglądarki */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Sprawia, że strona zajmuje całą wysokość przeglądarki */
+    justify-content: center;
+}
+
+.content {
+    width: 90%;
+}
+
+/* Stylizacja linku z napisem "BookShop" */
+.logo {
+    display: block;
+    font-size: 45px;
+    font-weight: bold;
+    color: #2b4950;
+    text-decoration: none;
+    padding-top: 50px; /* Odsunięcie od góry przez padding */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Zmiana koloru przy najechaniu */
+.logo:hover {
+    color: #4e8491;
+    transform: scale(1.1); /* Powiększenie o 10% */
+}
+
+/* Stylizacja top-boxa */
+.top-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px 20px;
+}
+
+/* Stylizacja formularza wyszukiwania */
+.search-form {
+    margin-top: 50px;
+
+    display: flex;
+    align-items: center;
+}
+
+.searchedTextField {
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid #ccc;
+    font-size: 16px;
+    text-align: center; /* Wyśrodkowanie tekstu placeholder */
+    width: 600px;
+    transition: all 0.3s ease;
+}
+
+.searchedTextField:focus {
+    border-color: #4e8491;
+    box-shadow: 0 0 5px rgba(78, 132, 145, 0.5);
+    outline: none;
+}
+
+.searchedTextField::placeholder {
+    color: #999;
+}
