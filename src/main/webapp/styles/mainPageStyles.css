@@ -55,7 +55,9 @@ h1 {
 }
 
 .book {
-    flex: 1 1 calc(20% - 15px); /* Każda książka zajmuje około jednej trzeciej szerokości kontenera, minus odstęp */
+    width: 150px;
+    height: 305px;
+    /*flex: 1 1 calc(20% - 15px); /* Każda książka zajmuje około jednej trzeciej szerokości kontenera, minus odstęp */
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -63,6 +65,8 @@ h1 {
     text-align: center;
     transition: transform 0.3s;
     box-sizing: border-box; /* Uwzględnia padding i border w szerokości */
+
+    cursor: pointer; /* Pokazuje wskaźnik ręki, sugerując, że element jest klikalny */
 }
 
 .book img {
@@ -76,17 +80,32 @@ h1 {
     font-size: 16px;
     font-weight: bold;
     margin: 5px 0;
+    width: 140px; /* Ustaw szerokość zgodnie z potrzebami */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .book-author {
     font-size: 14px;
     color: #555;
     margin-bottom: 5px;
+    width: 140px; /* Ustaw szerokość zgodnie z potrzebami */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .book-rating {
     font-size: 12px;
     color: #888;
+}
+
+.book-price {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #2b2b2b;
 }
 
 .book:hover {
@@ -96,9 +115,10 @@ h1 {
 
 
 
+
 .box {
     width: 90%;
-    background-image: url('leaves-background.png');
+    background-image: url('../leaves-background.png');
     /* url('leaves-background.png'); */
     background-position: right; /* Position the first image at the top and the second at the bottom */
     background-repeat: no-repeat; /* Ensure the images don't repeat */
@@ -107,4 +127,17 @@ h1 {
     min-height: 100vh; /* Ensure the content section takes at least the full height of the viewport */
     box-sizing: border-box;
 
+}
+
+/* Stylizacja dla formularza, aby był zgodny z książką */
+.book-form {
+    flex: 1 1 calc(20% - 15px); /* Upewnij się, że formularz zajmuje tyle samo miejsca co .book */
+    max-width: calc(40% - 15px); /* Szerokość formularza zgodna z książką */
+    margin: 0; /* Usuń margines formularza */
+    padding: 0; /* Usuń padding formularza */
+    background-color: transparent; /* Przezroczyste tło formularza */
+    border: none; /* Usuń ewentualne domyślne obramowania */
+    box-sizing: border-box; /* Uwzględnij padding i border w szerokości */
+    display: flex; /* Aby dzieci formularza były rozmieszczone w linii */
+    justify-content: center; /* Wyrównaj zawartość formularza do środka */
 }

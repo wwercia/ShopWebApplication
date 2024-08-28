@@ -1,0 +1,26 @@
+<nav class="sidebar">
+
+    <form method="get" action="products" class="top-button" id="form-products">
+        <button type="submit">Products</button>
+    </form>
+
+    <div class="bottom-buttons">
+        <form method="get" action="basket" id="form-basket">
+            <button type="submit">Basket</button>
+        </form>
+
+        <form method="get" action="orders" id="form-orders">
+            <button type="submit">Orders</button>
+        </form>
+
+        <form method="get" action="account" id="form-account">
+            <button type="submit">Account</button>
+        </form>
+
+        <form method="get" action="contact" id="form-contact">
+            <button type="submit">Contact</button>
+        </form>
+    </div>
+
+</nav>
+

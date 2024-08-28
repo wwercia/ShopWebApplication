@@ -31,6 +31,7 @@ h1 {
     color: #2b4950;
     text-decoration: none;
     padding-top: 50px; /* Odsunięcie od góry przez padding */
+    padding-left: 100px;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -44,14 +45,15 @@ h1 {
 .top-box {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: left;
     padding: 10px 20px;
+    margin-top: 10px;
 }
 
 /* Stylizacja formularza wyszukiwania */
 .search-form {
     margin-top: 50px;
-
+    margin-left: 300px;
     display: flex;
     align-items: center;
 }
@@ -74,4 +76,172 @@ h1 {
 
 .searchedTextField::placeholder {
     color: #999;
+}
+
+
+.bottom-box {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 10px 20px;
+}
+
+/* Stylizacja pudełka kategorii */
+.categories-box {
+    margin-top: 100px;
+    margin-left: 100px;
+    width: 14%;
+    background-color: #335861; /* Ciemne tło, pasujące do paska bocznego */
+    padding: 20px;
+    border-radius: 10px; /* Zaokrąglone rogi, jak w reszcie aplikacji */
+}
+
+/* Nagłówek kategorii */
+.categories-box h2 {
+    font-size: 20px; /* Większy rozmiar czcionki */
+    color: white; /* Jasny kolor tekstu, pasujący do ciemnego tła */
+    text-align: center; /* Wyrównanie do środka */
+    margin-bottom: 20px; /* Margines od dołu */
+    text-transform: uppercase; /* Zmiana na wielkie litery */
+    letter-spacing: 2px; /* Dodatkowa przestrzeń między literami */
+}
+
+/* Lista kategorii */
+.categories-list {
+    list-style-type: none; /* Usuń punkty listy */
+    padding: 0; /* Usuń wewnętrzne odstępy */
+}
+
+/* Każdy element kategorii */
+.book-category {
+    font-size: 15px; /* Rozmiar czcionki */
+    color: white; /* Jasny kolor tekstu */
+    padding: 5px 7px; /* Wewnętrzny odstęp */
+    border-radius: 5px; /* Lekko zaokrąglone rogi */
+    margin-bottom: 5px; /* Odstęp między elementami */
+    background-color: #3f6c77; /* Tło elementu, pasujące do reszty aplikacji */
+    cursor: pointer; /* Zmiana kursora na wskaźnik */
+    text-align: center; /* Centrowanie tekstu */
+}
+
+/* Styl dla kategorii po najechaniu */
+.book-category:hover {
+    background-color: #4e8491; /* Zmiana tła po najechaniu */
+}
+
+/* Styl dla linku wewnątrz kategorii */
+.book-category .category-link {
+    color: inherit; /* Dziedziczenie koloru tekstu z rodzica */
+    text-decoration: none; /* Usuń podkreślenie linku */
+    display: block;
+}
+
+.results-box {
+    background-color: #335861;
+    border-radius: 10px;
+    margin-top: 45px;
+    width: 64%;
+    height: 680px;
+    border: 1px solid #ffffff;
+    margin-left: 100px;
+}
+
+.top-result-box {
+    display: flex;
+}
+
+.books-cat {
+    width: 500px;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: white;
+}
+
+.results-size {
+    margin-top: 1px;
+    margin-left: 20px;
+    color: white;
+}
+
+.sortForm {
+    margin-top: 20px;
+    margin-left: 480px;
+    color: white;
+}
+
+hr {
+    margin-top: 10px;
+}
+
+
+
+
+.books-container {
+    padding-top: 20px;
+    padding-left: 45px;
+    display: flex;
+    flex-wrap: wrap; /* Pozwala na zawijanie książek */
+    gap: 15px; /* Odstęp między książkami */
+    max-height: 577px; /* Ustaw maksymalną wysokość kontenera */
+    overflow-y: auto; /* Dodaj przewijanie pionowe, gdy zawartość przekracza maksymalną wysokość */
+    padding-right: 15px; /* Dodaj przestrzeń dla paska przewijania */
+}
+
+.book {
+    width: 150px;
+    height: 310px;
+    /*flex: 1 1 calc(20% - 15px); /* Każda książka zajmuje około jednej trzeciej szerokości kontenera, minus odstęp */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s;
+    box-sizing: border-box; /* Uwzględnia padding i border w szerokości */
+
+    cursor: pointer; /* Pokazuje wskaźnik ręki, sugerując, że element jest klikalny */
+}
+
+.book img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.book-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+    width: 140px; /* Ustaw szerokość zgodnie z potrzebami */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    width: 140px; /* Ustaw szerokość zgodnie z potrzebami */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.book-rating {
+    font-size: 12px;
+    color: #888;
+}
+
+.book-price {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #2b2b2b;
+}
+
+.book:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }

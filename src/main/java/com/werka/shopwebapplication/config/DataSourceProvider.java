@@ -1,4 +1,4 @@
-package com.werka.shopwebapplication.data;
+package com.werka.shopwebapplication.config;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

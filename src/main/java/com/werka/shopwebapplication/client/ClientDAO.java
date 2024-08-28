@@ -1,6 +1,6 @@
-package com.werka.shopwebapplication.start;
+package com.werka.shopwebapplication.client;
 
-import com.werka.shopwebapplication.servlets.DataSourceProvider;
+import com.werka.shopwebapplication.config.DataSourceProvider;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;

@@ -1,4 +1,4 @@
-package com.werka.shopwebapplication.servlets;
+package com.werka.shopwebapplication.basket;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
