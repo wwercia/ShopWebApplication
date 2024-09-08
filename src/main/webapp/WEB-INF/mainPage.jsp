@@ -20,7 +20,7 @@
 
         <div class="container">
             <!-- Pasek boczny -->
-            <%@ include file="sidebar.jspf" %>
+            <%@ include file="segments/sidebar.jspf" %>
 
             <div class="box">
                 <!-- Główna część strony -->
@@ -33,16 +33,7 @@
                             <h2>Recommended books</h2>
                             <div class="books-container">
                                 <c:forEach var="book" items="${requestScope.recommendedBooks}">
-                                    <form action="book" method="get" class="book-form">
-                                        <input type="hidden" name="bookTitle" value="${book.title}">
-                                        <div class="book" onclick="this.parentNode.submit();">
-                                            <img src="${pageContext.request.contextPath}/images/${book.title}.png" alt="image of the book">
-                                            <p class="book-title" title="${book.title}">${book.title}</p>
-                                            <p class="book-author" title="${book.author}">${book.author}</p>
-                                            <p class="book-rating">${book.rating} / 5</p>
-                                            <p class="book-price">${book.price}zł</p>
-                                        </div>
-                                    </form>
+                                    <%@ include file="segments/bookElement.jspf" %>
                                 </c:forEach>
                             </div>
                         </div>
@@ -51,16 +42,9 @@
                             <h2>Best rated books</h2>
                             <div class="books-container">
                                 <c:forEach var="book" items="${requestScope.bestRatedBooks}">
-                                    <form action="book" method="get" class="book-form">
-                                        <input type="hidden" name="bookTitle" value="${book.title}">
-                                        <div class="book" onclick="this.parentNode.submit();">
-                                            <img src="${pageContext.request.contextPath}/images/${book.title}.png" alt="image of the book">
-                                            <p class="book-title" title="${book.title}">${book.title}</p>
-                                            <p class="book-author" title="${book.author}">${book.author}</p>
-                                            <p class="book-rating">${book.rating} / 5</p>
-                                            <p class="book-price">${book.price}zł</p>
-                                        </div>
-                                    </form>
+
+                                    <%@ include file="segments/bookElement.jspf" %>
+
                                 </c:forEach>
                             </div>
 

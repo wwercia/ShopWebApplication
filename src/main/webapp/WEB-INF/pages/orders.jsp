@@ -17,7 +17,7 @@
     <body>
 
         <div class="container">
-            <%@ include file="../sidebar.jspf" %>
+            <%@ include file="../segments/sidebar.jspf" %>
 
             <main class="content">
                 <h1>Orders page!</h1>

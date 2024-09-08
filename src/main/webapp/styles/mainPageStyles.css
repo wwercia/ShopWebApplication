@@ -43,6 +43,7 @@ h1 {
 }
 
 .books-box h2 {
+    color: white;
     text-align: center;
     font-size: 20px; /* Rozmiar czcionki nagłówka */
     margin-bottom: 15px;

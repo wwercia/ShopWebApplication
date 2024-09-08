@@ -16,7 +16,7 @@
     </head>
     <body>
         <div class="container">
-            <%@ include file="../sidebar.jspf" %>
+            <%@ include file="../segments/sidebar.jspf" %>
 
             <main class="content">
 
@@ -34,9 +34,8 @@
                         <h2>Categories</h2>
                         <ul class="categories-list">
                             <c:forEach var="cat" items="${requestScope.categories}">
-                                <!-- Include the current sorting parameter in the category link -->
                                 <li class="book-category">
-                                    <a class="category-link" href="products?category=${cat.category}&sortBy=${param.sortBy != null ? param.sortBy : 'best-selling'}">${cat.category}</a>
+                                    <a class="category-link" href="products?category=${cat.name}&sortBy=${param.sortBy != null ? param.sortBy : 'best-selling'}"><c:out value="${cat.name}"/></a>
                                 </li>
                             </c:forEach>
                         </ul>
@@ -45,7 +44,7 @@
                     <div class="results-box">
 
                         <div class="top-result-box">
-                            <h2 class="books-cat">Books: ${param.category}</h2>
+                            <h2 class="books-cat">Books: <c:out value="${requestScope.category}"/></h2>
 
                             <form class="sortForm" action="products" method="get">
                                 <!-- Ukryte pole do przekazywania aktualnie wybranej kategorii -->
@@ -61,21 +60,12 @@
                                 </select>
                             </form>
                         </div>
-                        <h2 class="results-size">Results: ${requestScope.resultsSize}</h2>
+                        <h2 class="results-size">Results: <c:out value="${requestScope.resultsSize}" /> </h2>
                         <hr>
 
                         <div class="books-container">
                             <c:forEach var="book" items="${requestScope.resultBooks}">
-                                <form action="book" method="get" class="book-form">
-                                    <input type="hidden" name="bookTitle" value="${book.title}">
-                                    <div class="book" onclick="this.parentNode.submit();">
-                                        <img src="${pageContext.request.contextPath}/images/${book.title}.png" alt="image of the book">
-                                        <p class="book-title" title="${book.title}">${book.title}</p>
-                                        <p class="book-author" title="${book.author}">${book.author}</p>
-                                        <p class="book-rating">${book.rating} / 5</p>
-                                        <p class="book-price">${book.price}zł</p>
-                                    </div>
-                                </form>
+                                <%@ include file="../segments/bookElement.jspf"%>
                             </c:forEach>
                         </div>
 
