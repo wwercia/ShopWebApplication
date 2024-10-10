@@ -1,5 +1,6 @@
 package com.werka.shopwebapplication.domain.client;
 
+import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.common.BaseDao;
 import java.sql.*;
 
@@ -16,7 +17,8 @@ public class ClientDAO extends BaseDao {
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if(generatedKeys.next()) {
-                client.setId(generatedKeys.getInt(1));
+                int id = generatedKeys.getInt(1);
+                client.setId(id);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -24,13 +26,15 @@ public class ClientDAO extends BaseDao {
     }
 
     public boolean isFoundClientByMailAndPass(String email, String password){
-        final String sql = "SELECT first_name FROM clients WHERE email= ? AND password= ?";
+        final String sql = "SELECT `id` FROM clients WHERE email= ? AND password= ?";
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, email);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                DataHelper.setClientId(resultSet.getInt("id"));
+                System.out.println("client id: " + DataHelper.getClientId());
                 return true;
             }
         } catch (SQLException e) {

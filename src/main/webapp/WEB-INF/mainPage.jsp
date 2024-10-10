@@ -15,6 +15,8 @@
         <title>Book Shop</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/mainPageStyles.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/sidebarStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bookElementStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/mainPageElementsStyles.css">
     </head>
     <body>
 
@@ -38,6 +40,7 @@
                             </div>
                         </div>
 
+
                         <div class="books-box">
                             <h2>Best rated books</h2>
                             <div class="books-container">
@@ -54,6 +57,5 @@
                 </main>
             </div>
         </div>
-
     </body>
 </html>

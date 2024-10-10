@@ -1,5 +1,8 @@
 package com.werka.shopwebapplication.domain.api;
 
+import com.werka.shopwebapplication.config.DataHelper;
+import com.werka.shopwebapplication.domain.basket.Basket;
+import com.werka.shopwebapplication.domain.basket.BasketDao;
 import com.werka.shopwebapplication.domain.book.Book;
 import com.werka.shopwebapplication.domain.book.BookDao;
 import com.werka.shopwebapplication.domain.bookCategory.BookCategory;
@@ -18,6 +21,7 @@ public class BookService {
     private BookDao bookDao = new BookDao();
     private BookCategoryDao bookCategoryDao = new BookCategoryDao();
     private CategoryDao categoryDao = new CategoryDao();
+    private BasketDao basketDao = new BasketDao();
 
     public List<BookBasicInfo> findSortedBooksByCategory(String category, String sortBy) {
 
@@ -42,10 +46,10 @@ public class BookService {
         List<BookBasicInfo> resultBooks = new ArrayList<>();
 
         if(category.equals("all")){
-            resultBooks.addAll(bookDao.findAll().stream().map(BookMapper::map).collect(Collectors.toList()));
+            resultBooks.addAll(bookDao.findAll().stream().map(BookBasicMapper::map).collect(Collectors.toList()));
         }else {
             List<BookCategoryInfo> booksCategories =  bookCategoryDao.findAll().stream().map(BookCategoryMapper::map).collect(Collectors.toList());
-            List<BookBasicInfo> books = bookDao.findAll().stream().map(BookMapper::map).collect(Collectors.toList());
+            List<BookBasicInfo> books = bookDao.findAll().stream().map(BookBasicMapper::map).collect(Collectors.toList());
             for(BookBasicInfo book: books){
                 for (BookCategoryInfo bookCategory : booksCategories) {
                     if (book.getId() == bookCategory.getBookId()) {
@@ -66,7 +70,32 @@ public class BookService {
                 .map(BookFullInfoMapper::map);
     }
 
-    private static class BookMapper {
+    public Optional<BookBasicInfo> findBookBasicInfoByTitle(String title) {
+        return bookDao.findBookByTitle(title)
+                .map(BookBasicMapper::map);
+    }
+
+    public void saveBook(String title) {
+
+        BookBasicInfo bookBasicInfo = findBookBasicInfoByTitle(title).orElseThrow();
+
+        int clientId = DataHelper.getClientId();
+        System.out.println("client id = " + clientId);
+
+        // jak tu mieć client id?
+        basketDao.saveBook(new Basket(clientId, bookBasicInfo.getId()));
+
+    }
+
+    public List<BookBasicInfo> getBestRatedBooks(int number) {
+        return bookDao.getBestRatedBooks(number).stream().map(BookBasicMapper::map).collect(Collectors.toList());
+    }
+
+    public List<BookBasicInfo> getRecommendedBooks() {
+        return bookDao.getRecommendedBooks().stream().map(BookBasicMapper::map).collect(Collectors.toList());
+    }
+
+    private static class BookBasicMapper {
         static BookBasicInfo map(Book c) {
             return new BookBasicInfo(
                     c.getId(),
@@ -105,5 +134,6 @@ public class BookService {
             );
         }
     }
+
 
 }

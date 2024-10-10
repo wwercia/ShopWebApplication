@@ -13,6 +13,8 @@
         <title>Products</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/productsStyles.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/sidebarStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bookElementStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/productElementsStyles.css">
     </head>
     <body>
         <div class="container">

@@ -1,5 +1,6 @@
 package com.werka.shopwebapplication.client.authentication;
 
+import com.werka.shopwebapplication.domain.api.ClientService;
 import com.werka.shopwebapplication.domain.client.Client;
 import com.werka.shopwebapplication.domain.client.ClientDAO;
 import jakarta.servlet.ServletException;
@@ -18,7 +19,7 @@ public class RegistrationController extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, resp);
     }
 
-    private final ClientDAO clientDAO = new ClientDAO();
+    private ClientService clientService = new ClientService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,17 +29,11 @@ public class RegistrationController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        if (email != null && !email.isEmpty() && password != null && !password.isEmpty()
-                && name != null && !name.isEmpty() && surname != null && !surname.isEmpty()) {
+        boolean isCorrectData = clientService.isRegistrationDataCorrect(name, surname, email, password);
 
-            boolean isMailFree = clientDAO.isMailFree(email);
-            if (isMailFree) {
-                Client client = new Client(-1, name, surname, email, password);
-                clientDAO.save(client);
-                resp.sendRedirect("main");
-            } else {
-                request.getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, resp);
-            }
+        if (isCorrectData) {
+            clientService.saveClient(name, surname, email, password);
+            resp.sendRedirect("main");
         }else {
             request.getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, resp);
         }

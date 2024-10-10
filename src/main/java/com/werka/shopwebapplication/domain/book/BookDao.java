@@ -56,7 +56,6 @@ public class BookDao extends BaseDao {
         titles.add("Niewidzialne życie Addie LaRue");
         titles.add("Flaw(less)");
         titles.add("Rodzina Monet");
-        titles.add("shatter me");
 
         List<Book> result = new ArrayList<>();
         for(String title : titles){

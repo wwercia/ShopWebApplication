@@ -1,0 +1,65 @@
+
+
+/* Styl dla przycisku Add to Basket */
+.add-to-basket {
+    background-color: #335861;
+    color: white;
+    border: none;
+    width: 110px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 4px auto; /* Automatyczne wyrównanie do środka */
+    display: none; /* Ukryty przycisk domyślnie */
+    text-align: center; /* Wyrównuje tekst wewnątrz przycisku */
+}
+
+/* Pokazanie przycisku Add to Basket po najechaniu myszką */
+.book-element-box:hover .add-to-basket {
+    display: block; /* Przycisk widoczny */
+    opacity: 1; /* Płynne przejście */
+}
+
+.book-element-box:hover .add-to-basket:hover {
+    background-color: #42727e;
+}
+
+.book img {
+    max-height: 240px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.book-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+    width: 140px; /* Ustaw szerokość zgodnie z potrzebami */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    width: 140px; /* Ustaw szerokość zgodnie z potrzebami */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.book-rating {
+    font-size: 12px;
+    color: #888;
+}
+
+.book-price {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #2b2b2b;
+}

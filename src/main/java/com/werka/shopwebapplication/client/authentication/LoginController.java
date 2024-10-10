@@ -1,7 +1,7 @@
 package com.werka.shopwebapplication.client.authentication;
 
 
-import com.werka.shopwebapplication.domain.client.ClientDAO;
+import com.werka.shopwebapplication.domain.api.ClientService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,22 +18,19 @@ public class LoginController extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
     }
 
-    private final ClientDAO clientDAO = new ClientDAO();
+    private ClientService clientService = new ClientService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        if (email != null && !email.isEmpty() && password != null && !password.isEmpty()) {
 
-            boolean isFound = clientDAO.isFoundClientByMailAndPass(email, password);
-            if (isFound) {
-                resp.sendRedirect("main");
-            }else {
-                request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, resp);
-            }
+        if (clientService.isLoginDataCorrect(email, password)) {
+            resp.sendRedirect("main");
         }else {
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, resp);
         }
+
     }
 }

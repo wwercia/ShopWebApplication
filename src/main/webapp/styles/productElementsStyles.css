@@ -1,0 +1,17 @@
+
+.book-element-box{
+    align-content: center;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+    min-height: 350px; /* Zwiększamy minimalną wysokość, aby zrobić miejsce na przycisk */
+    overflow: hidden; /* Aby nic nie wychodziło poza kontener */
+    width: 180px;
+    height: 380px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box; /* Uwzględnia padding i border w szerokości */
+
+}

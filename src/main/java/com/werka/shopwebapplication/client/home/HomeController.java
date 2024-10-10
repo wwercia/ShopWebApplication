@@ -1,5 +1,7 @@
 package com.werka.shopwebapplication.client.home;
 
+import com.werka.shopwebapplication.domain.api.BookBasicInfo;
+import com.werka.shopwebapplication.domain.api.BookService;
 import com.werka.shopwebapplication.domain.book.Book;
 import com.werka.shopwebapplication.domain.book.BookDao;
 import jakarta.servlet.ServletException;
@@ -15,19 +17,19 @@ import java.util.List;
 public class HomeController extends HttpServlet {
 
     private BookDao bookDao = new BookDao();
+    private BookService bookService = new BookService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Book> recommendedBooks = bookDao.getRecommendedBooks();
+        List<BookBasicInfo> recommendedBooks = bookService.getRecommendedBooks();
         request.setAttribute("recommendedBooks", recommendedBooks);
 
-        List<Book> bestRatedBooks = bookDao.getBestRatedBooks(4);
+        List<BookBasicInfo> bestRatedBooks = bookService.getBestRatedBooks(3);
         request.setAttribute("bestRatedBooks", bestRatedBooks);
 
         request.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(request, resp);
     }
-
 
 
 }
