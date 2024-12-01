@@ -21,9 +21,7 @@ public class BookController extends HttpServlet {
         String bookTitle = request.getParameter("bookTitle");
         BookFullInfo book = bookService.findBookByTitle(bookTitle).orElseThrow();
 
-        System.out.println(book);
-
-
+        request.setAttribute("bookInfo", book);
         request.getRequestDispatcher("/WEB-INF/pages/book.jsp").forward(request, response);
     }
 }

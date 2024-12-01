@@ -9,10 +9,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-h1 {
-    text-align: center;
-}
-
 .container {
     display: flex;
     height: 100vh; /* Sprawia, że strona zajmuje całą wysokość przeglądarki */
@@ -21,4 +17,96 @@ h1 {
 
 .content {
     width: 90%;
+    display: flex;
+}
+
+.books-container {
+    margin-left: 70px;
+    margin-top: 50px;
+    width: 55%;
+    height: 90%;
+    flex-wrap: wrap; /* Pozwala na zawijanie książek */
+    gap: 15px; /* Odstęp między książkami */
+    overflow-y: auto; /* Dodaj przewijanie pionowe, gdy zawartość przekracza maksymalną wysokość */
+    background-color: #44707a;
+    border-radius: 10px;
+}
+
+.book-element-box {
+    margin: 15px;
+    width: 96%;
+    height: 35%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #a5c8cf;
+}
+
+.book {
+    width: 95%;
+    padding: 20px;
+    height: 95%;
+    display: flex;
+}
+
+.book-info{
+    display: block;
+    align-items: center;
+    margin-left: 8%;
+}
+
+.subtotalFrame {
+    margin-left: 70px;
+    margin-top: 325px;
+    width: 30%;
+    height: 30%;
+    border-radius: 10px;
+    background-color: #44707a;
+    justify-items: center;
+    align-content: center;
+}
+
+.subtotal {
+    width: 90%;
+    height: 82%;
+    background-color: #a5c8cf;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Układa dzieci w kolumnie */
+    justify-content: flex-start; /* Dopasowuje zawartość do góry */
+    align-items: center; /* Wyrównanie w poziomie */
+
+}
+
+.summaryText {
+    font-size: 35px;
+    margin-top: 20px;
+}
+
+.totalText {
+    font-size: 25px;
+    margin-top: 40px;
+}
+
+
+/* Stylizacja linku jako przycisku */
+.checkout-button {
+    margin-top: 40px;
+    display: inline-block; /* Zachowuje styl bloku dla przycisku */
+    text-decoration: none; /* Usuwa podkreślenie linku */
+    background-color: #44707a;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px; /* przestrzeń wokół tekstu */
+    border: none; /* Brak domyślnej ramki */
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+    cursor: pointer; /* Wskaźnik zmienia się na rękę */
+    transition: all 0.3s ease; /* Płynna animacja przejścia */
+}
+
+.checkout-button:hover {
+    background-color: #35656f;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Większy cień */
+    transform: translateY(-2px); /*  uniesienie przycisku */
 }

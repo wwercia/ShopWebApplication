@@ -16,7 +16,6 @@ import java.util.List;
 @WebServlet("/main")
 public class HomeController extends HttpServlet {
 
-    private BookDao bookDao = new BookDao();
     private BookService bookService = new BookService();
 
     @Override

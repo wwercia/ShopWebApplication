@@ -1,4 +1,4 @@
-/* Resetowanie domyślnych stylów przeglądarki */
+
 * {
     margin: 0;
     padding: 0;
@@ -16,9 +16,105 @@ h1 {
 .container {
     display: flex;
     height: 100vh; /* Sprawia, że strona zajmuje całą wysokość przeglądarki */
-    justify-content: center;
+
+    background-image: url('../book-background.png');
+    /* url('leaves-background.png'); */
+    background-position: right; /* Position the first image at the top and the second at the bottom */
+    background-repeat: no-repeat; /* Ensure the images don't repeat */
+    background-size: contain; /* Adjusts the size of the background images */
+    background-color: white; /* Fallback color */
+
 }
 
 .content {
+    margin-top: 13%;
+    margin-left: 3%;
     width: 90%;
+    padding: 20px;
+    height: 60%;
+    display: flex;
+}
+
+
+/* Stylizacja kontenera info */
+.info{
+    display: block;
+    align-items: center;
+    margin-left: 8%;
+}
+
+/* Styl dla przycisku Add to Basket */
+.add-to-basket {
+    display: block; /* Przycisk widoczny */
+    background-color: #335861;
+    color: white;
+    border: none;
+    width: 200px;
+    height: 80px;
+    font-size: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 9%;
+    text-align: center; /* Wyrównuje tekst wewnątrz przycisku */
+}
+
+.add-to-basket:hover {
+    background-color: #42727e;
+}
+
+.image {
+    max-height: 500px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.book-title {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 5px 0;
+    width: 900px; /* Ustaw szerokość zgodnie z potrzebami */
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+}
+
+.book-author {
+    margin-top: 2%;
+    font-size: 25px;
+    color: #555;
+    width: 650px; /* Ustaw szerokość zgodnie z potrzebami */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.book-rating {
+    font-size: 23px;
+    color: #595959;
+}
+
+.book-price {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #2b2b2b;
+}
+
+.book-description{
+    margin-top: 5%;
+    width: 670px;
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+
+}
+
+.book-publisher,
+.book-rating,
+.book-price,
+.book-series,
+.book-pages,
+.book-cover,
+.book-publicationDate {
+    margin: 8px 0; /* Odstęp górny i dolny */
 }

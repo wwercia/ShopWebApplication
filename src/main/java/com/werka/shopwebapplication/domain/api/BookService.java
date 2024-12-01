@@ -10,6 +10,7 @@ import com.werka.shopwebapplication.domain.bookCategory.BookCategoryDao;
 import com.werka.shopwebapplication.domain.category.Category;
 import com.werka.shopwebapplication.domain.category.CategoryDao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -76,15 +77,43 @@ public class BookService {
     }
 
     public void saveBook(String title) {
-
         BookBasicInfo bookBasicInfo = findBookBasicInfoByTitle(title).orElseThrow();
-
         int clientId = DataHelper.getClientId();
         System.out.println("client id = " + clientId);
-
-        // jak tu mieć client id?
         basketDao.saveBook(new Basket(clientId, bookBasicInfo.getId()));
+    }
 
+    public double getOrderTotal() {
+        List<BasicBasketBookInfo> books = getBooksInBasket(DataHelper.getClientId());
+        double total = 0.0;
+        for(BasicBasketBookInfo book : books) {
+            total += (book.getPrice().doubleValue() * book.getQuantity());
+        }
+        return total;
+    }
+
+    public void updateBookQuantity(String title, int quantity) {
+
+        List<BasicBasketBookInfo> booksInBasket = getBooksInBasket(DataHelper.getClientId());
+        basketDao.updateBookQuantity(title, quantity, booksInBasket);
+
+    }
+
+    public List<BasicBasketBookInfo> getBooksInBasket(int clientId) {
+
+        List<BasketBooksInfo> basketBooks = basketDao.getBooksInBasket(clientId);
+        List<BasicBasketBookInfo> result = new ArrayList<>();
+        for(BasketBooksInfo book : basketBooks){
+            BookBasicInfo b = findBookById(book.getBookId()).orElseThrow();
+            BasicBasketBookInfo finalBook = new BasicBasketBookInfo(b.getId(), b.getTitle(), b.getAuthor(), b.getPrice(), b.getRating(), book.getQuantity());
+            result.add(finalBook);
+        }
+        return result;
+    }
+
+    public Optional<BookBasicInfo> findBookById(int bookId) {
+        return bookDao.findBookById(bookId)
+                .map(BookBasicMapper::map);
     }
 
     public List<BookBasicInfo> getBestRatedBooks(int number) {

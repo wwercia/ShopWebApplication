@@ -1,0 +1,56 @@
+/* Resetowanie domyślnych stylów przeglądarki */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Sprawia, że strona zajmuje całą wysokość przeglądarki */
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+/* Stylizacja linku z napisem "BookShop" */
+.logo {
+    font-size: 45px;
+    font-weight: bold;
+    color: #2b4950;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Zmiana koloru przy najechaniu */
+.logo:hover {
+    color: #4e8491;
+    transform: scale(1.1); /* Powiększenie o 10% */
+}
+
+.content1 {
+    margin-top: 25px;
+    display: flex;
+    width: 85%;
+    height: 85%;
+    border-radius: 20px;
+    background-color: #44707a;
+    justify-content: center;
+    align-items: center;
+}
+
+.content2 {
+    width: 96%;
+    height: 92%;
+    border-radius: 20px;
+    background-color: #a5c8cf;
+}

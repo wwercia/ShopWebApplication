@@ -1,0 +1,67 @@
+
+.book img {
+    max-height: 500px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.book-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 5px 0;
+    width: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.book-author {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 5px;
+    width: 500px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.book-rating {
+    font-size: 16px;
+    color: #888;
+}
+
+.book-price {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #2b2b2b;
+}
+
+.quantity-container {
+    gap: 10px; /* Odstęp między etykietą a polem */
+    margin-top: 100px;
+}
+
+.quantity-label {
+    font-size: 18px;
+    color: #000000; /* Subtelny kolor tekstu */
+    font-weight: bold; /* Pogrubienie tekstu */
+}
+
+.quantity-input {
+    width: 60px; /* Szerokość pola liczbowego */
+    padding: 5px; /* Wewnętrzny odstęp dla czytelności */
+    font-size: 16px; /* Większy rozmiar czcionki */
+    border: 1px solid #ccc; /* Kolor i grubość obramowania */
+    border-radius: 5px; /* Zaokrąglone rogi */
+    text-align: center; /* Wyśrodkowanie liczby */
+    outline: none; /* Usunięcie podświetlenia na obramowaniu */
+    transition: border-color 0.3s ease; /* Płynne przejście koloru obramowania */
+}
+
+.quantity-input:focus {
+    border-color: #44707a; /* Zmiana koloru obramowania przy skupieniu */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Subtelny cień */
+}

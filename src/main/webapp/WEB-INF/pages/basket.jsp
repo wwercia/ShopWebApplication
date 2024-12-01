@@ -13,13 +13,30 @@
         <title>Basket</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/basketStyles.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/sidebarStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/basketBookElementStyles.css">
     </head>
     <body>
         <div class="container">
+
             <%@ include file="../segments/sidebar.jspf" %>
 
             <main class="content">
-                <h1>Basket page!</h1>
+                <div class="books-container">
+                    <c:forEach var="book" items="${requestScope.resultBooks}">
+                        <%@ include file="../segments/basketBookElement.jspf"%>
+                    </c:forEach>
+                </div>
+
+                <div class="subtotalFrame">
+                    <div class="subtotal">
+                        <h1 class="summaryText">Order summary</h1>
+                        <p class="totalText">Total: ${requestScope.orderTotal}</p>
+                        <a href="checkout" target="_blank" class="checkout-button">
+                            Proceed to checkout
+                        </a>
+                    </div>
+                </div>
+
             </main>
         </div>
         <script src="${pageContext.request.contextPath}/script.js"></script>
