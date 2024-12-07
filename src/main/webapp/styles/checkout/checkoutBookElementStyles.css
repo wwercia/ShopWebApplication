@@ -1,0 +1,47 @@
+
+.single-element-box {
+    margin: 15px;
+    width: 96%;
+    /* border-radius: 10px; */
+    padding: 10px;
+    background-color: #bcdbe1;
+}
+
+.book img {
+    max-height: 65px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.book-title {
+    font-size: 20px;
+    font-weight: bold;
+    width: 70%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-self: center;
+    margin-left: 2%;
+}
+
+.book-price {
+    font-weight: bold;
+    font-size: 15px;
+    color: #2b2b2b;
+}
+
+.book-quantity {
+    margin-top: 4%;
+    font-size: 15px;
+}
+
+.book-info {
+    display: block;
+    align-content: center;
+    margin-left: 8%;
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+}

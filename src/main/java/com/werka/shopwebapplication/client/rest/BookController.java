@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet("/book")
 public class BookController extends HttpServlet {
 
-    private BookService bookService = new BookService();
+    private final BookService bookService = new BookService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

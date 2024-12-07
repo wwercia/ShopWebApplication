@@ -13,12 +13,12 @@ import java.io.IOException;
 @WebServlet("/log")
 public class LoginController extends HttpServlet {
 
+    private final ClientService clientService = new ClientService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
     }
-
-    private ClientService clientService = new ClientService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {

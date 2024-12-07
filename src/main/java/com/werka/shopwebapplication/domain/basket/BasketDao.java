@@ -115,7 +115,6 @@ public class BasketDao extends BaseDao {
             return;
         }
 
-
         if(book != null) {
             try(Connection connection = getConnection();
                 Statement statement = connection.createStatement()){
@@ -136,6 +135,17 @@ public class BasketDao extends BaseDao {
             }
         }
         return -1;
+    }
+
+    public void removeBookFromBasket(int bookId) {
+        final String sql = "DELETE FROM basket WHERE book_id = ?";
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, bookId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

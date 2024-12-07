@@ -22,18 +22,33 @@
 
             <main class="content">
                 <div class="books-container">
-                    <c:forEach var="book" items="${requestScope.resultBooks}">
-                        <%@ include file="../segments/basketBookElement.jspf"%>
-                    </c:forEach>
+
+                    <% if (request.getAttribute("areBooksInBasket").equals("true")) { %>
+                        <c:forEach var="book" items="${requestScope.resultBooks}">
+                            <%@ include file="../segments/basketBookElement.jspf"%>
+                        </c:forEach>
+                    <% } else { %>
+                        <h2 class="emptyBasketText">Your basket is empty!</h2>
+                    <% } %>
+
                 </div>
 
                 <div class="subtotalFrame">
                     <div class="subtotal">
                         <h1 class="summaryText">Order summary</h1>
-                        <p class="totalText">Total: ${requestScope.orderTotal}</p>
-                        <a href="checkout" target="_blank" class="checkout-button">
-                            Proceed to checkout
-                        </a>
+                        <p class="totalText">Total: ${requestScope.orderTotal} zł</p>
+
+                        <% if (request.getAttribute("areBooksInBasket").equals("true")) { %>
+                            <a href="addressCheckout" target="_blank" class="checkout-button">
+                                Proceed to checkout
+                            </a>
+                        <% } else { %>
+                            <a class="fake-checkout-button">
+                                Proceed to checkout
+                            </a>
+                        <% } %>
+
+
                     </div>
                 </div>
 

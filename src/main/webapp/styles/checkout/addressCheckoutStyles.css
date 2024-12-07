@@ -1,0 +1,80 @@
+
+.content2 {
+    width: 96%;
+    height: 92%;
+    border-radius: 20px;
+    background-color: #a5c8cf;
+    justify-items: center;
+    align-content: center;
+}
+
+.address {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto; /* Centrowanie formularza */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /*  cień */
+}
+
+.address-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #333;
+}
+
+.form-label {
+    display: block; /* Ustawienie etykiety w osobnej linii */
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px; /* Odstęp między polami */
+    background-color: #fff;
+    box-sizing: border-box; /* Uwzględnia padding w szerokości */
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #35656f;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.submit-button {
+    width: 100%; /* Szerokość na cały formularz */
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #44707a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #2c616c;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lekki cień */
+}
+
+.incorrect-data {
+    color: #c12424;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}

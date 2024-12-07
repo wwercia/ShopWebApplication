@@ -2,8 +2,6 @@ package com.werka.shopwebapplication.client.home;
 
 import com.werka.shopwebapplication.domain.api.BookBasicInfo;
 import com.werka.shopwebapplication.domain.api.BookService;
-import com.werka.shopwebapplication.domain.book.Book;
-import com.werka.shopwebapplication.domain.book.BookDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,7 +14,7 @@ import java.util.List;
 @WebServlet("/main")
 public class HomeController extends HttpServlet {
 
-    private BookService bookService = new BookService();
+    private final BookService bookService = new BookService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {

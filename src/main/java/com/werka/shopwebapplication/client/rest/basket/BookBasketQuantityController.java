@@ -1,4 +1,4 @@
-package com.werka.shopwebapplication.client.rest;
+package com.werka.shopwebapplication.client.rest.basket;
 
 import com.werka.shopwebapplication.domain.api.BookService;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebServlet("/quantity")
 public class BookBasketQuantityController extends HttpServlet {
 
-    private BookService bookService = new BookService();
+    private final BookService bookService = new BookService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

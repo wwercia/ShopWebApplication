@@ -1,0 +1,132 @@
+
+.content2 {
+    width: 96%;
+    height: 92%;
+    border-radius: 20px;
+    background-color: #a5c8cf;
+    justify-items: center;
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.order-information {
+    width: 68%;
+    height: 92%;
+    border-radius: 20px;
+    justify-items: center;
+    align-content: center;
+}
+
+.products {
+    margin-top: 2%;
+    width: 75%;
+    max-height: 45%;
+    flex-wrap: wrap; /* Pozwala na zawijanie książek */
+    overflow-y: auto; /* Dodaj przewijanie pionowe, gdy zawartość przekracza maksymalną wysokość */
+    background-color: #bcdbe1;
+    border-radius: 10px;
+    border: 3px solid #44707a;
+}
+
+/* Kontener dla adresu użytkownika */
+.user-address {
+    margin-top: 5%;
+    width: 100%; /* Możesz ustawić max-width, np. max-width: 400px */
+    max-width: 400px; /* Ograniczenie szerokości */
+    padding: 20px;
+    border: 3px solid #44707a;
+    border-radius: 8px; /* Zaokrąglone rogi */
+    background-color: #bcdbe1; /* Jasne tło */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtelny cień */
+}
+
+.address-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #292828; /* Neutralny, ciemnoszary kolor */
+    margin-bottom: 15px;
+    text-align: center; /* Wyśrodkowanie tytułu */
+}
+
+.address-detail {
+    font-size: 17px;
+    color: #403f3f;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    border-left: 3px solid #44707a;
+}
+
+.delivery {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto; /* Centrowanie i odstępy od innych elementów */
+    padding: 20px;
+    border: 3px solid #44707a;
+    border-radius: 8px;
+    background-color: #bcdbe1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-change-button {
+    margin-left: 30%;
+    background-color: #44707a;
+    font-size: 16px;
+    color: white;
+    padding: 7px 14px; /* przestrzeń wokół tekstu */
+    border: 2px solid #24434a;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delivery-change-button:hover {
+    background-color: #35656f;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Większy cień */
+    transform: translateY(-1px); /*  uniesienie przycisku */
+}
+
+.delivery-method-text {
+    font-size: 20px;
+    margin-left: 2%;
+}
+
+.final-information {
+    width: 25%;
+    height: 22%;
+    border: 3px solid #44707a;
+    border-radius: 8px;
+    background-color: #bcdbe1;
+    justify-items: center;
+    align-content: center;
+    justify-self: center;
+    align-self: center;
+}
+
+.text {
+    margin-top: 2%;
+}
+
+.pay-button {
+    margin-top: 8%;
+    background-color: #44707a;
+    font-size: 18px;
+    color: white;
+    padding: 7px 14px; /* przestrzeń wokół tekstu */
+    border: 2px solid #24434a;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pay-button  {
+    background-color: #35656f;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Większy cień */
+    transform: translateY(-1px); /*  uniesienie przycisku */
+}

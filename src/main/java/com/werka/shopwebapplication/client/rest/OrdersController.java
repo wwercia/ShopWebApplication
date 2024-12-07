@@ -1,6 +1,5 @@
 package com.werka.shopwebapplication.client.rest;
 
-import com.werka.shopwebapplication.domain.orders.OrderDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

@@ -33,10 +33,10 @@
 }
 
 .book-price {
-    margin-top: 5px;
     font-weight: bold;
     font-size: 20px;
     color: #2b2b2b;
+    margin-top: 3px;
 }
 
 .quantity-container {
@@ -46,7 +46,6 @@
 
 .quantity-label {
     font-size: 18px;
-    color: #000000; /* Subtelny kolor tekstu */
     font-weight: bold; /* Pogrubienie tekstu */
 }
 

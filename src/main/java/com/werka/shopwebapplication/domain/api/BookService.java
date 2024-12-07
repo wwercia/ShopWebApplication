@@ -1,6 +1,7 @@
 package com.werka.shopwebapplication.domain.api;
 
 import com.werka.shopwebapplication.config.DataHelper;
+import com.werka.shopwebapplication.domain.CurrentOrderId;
 import com.werka.shopwebapplication.domain.basket.Basket;
 import com.werka.shopwebapplication.domain.basket.BasketDao;
 import com.werka.shopwebapplication.domain.book.Book;
@@ -9,8 +10,11 @@ import com.werka.shopwebapplication.domain.bookCategory.BookCategory;
 import com.werka.shopwebapplication.domain.bookCategory.BookCategoryDao;
 import com.werka.shopwebapplication.domain.category.Category;
 import com.werka.shopwebapplication.domain.category.CategoryDao;
+import com.werka.shopwebapplication.domain.delivery.DeliveryMethod;
+import com.werka.shopwebapplication.domain.delivery.DeliveryMethodDao;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -19,10 +23,11 @@ import java.util.stream.Collectors;
 
 public class BookService {
 
-    private BookDao bookDao = new BookDao();
-    private BookCategoryDao bookCategoryDao = new BookCategoryDao();
-    private CategoryDao categoryDao = new CategoryDao();
-    private BasketDao basketDao = new BasketDao();
+    private final BookDao bookDao = new BookDao();
+    private final BookCategoryDao bookCategoryDao = new BookCategoryDao();
+    private final CategoryDao categoryDao = new CategoryDao();
+    private final BasketDao basketDao = new BasketDao();
+    private final DeliveryMethodDao deliveryMethodDao = new DeliveryMethodDao();
 
     public List<BookBasicInfo> findSortedBooksByCategory(String category, String sortBy) {
 
@@ -85,11 +90,11 @@ public class BookService {
 
     public double getOrderTotal() {
         List<BasicBasketBookInfo> books = getBooksInBasket(DataHelper.getClientId());
-        double total = 0.0;
+        BigDecimal total = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_EVEN);
         for(BasicBasketBookInfo book : books) {
-            total += (book.getPrice().doubleValue() * book.getQuantity());
+            total = total.add(book.getPrice());
         }
-        return total;
+        return total.doubleValue();
     }
 
     public void updateBookQuantity(String title, int quantity) {
@@ -105,7 +110,8 @@ public class BookService {
         List<BasicBasketBookInfo> result = new ArrayList<>();
         for(BasketBooksInfo book : basketBooks){
             BookBasicInfo b = findBookById(book.getBookId()).orElseThrow();
-            BasicBasketBookInfo finalBook = new BasicBasketBookInfo(b.getId(), b.getTitle(), b.getAuthor(), b.getPrice(), b.getRating(), book.getQuantity());
+            BigDecimal price = BigDecimal.valueOf(b.getPrice().floatValue() * book.getQuantity()).setScale(2, RoundingMode.HALF_EVEN);
+            BasicBasketBookInfo finalBook = new BasicBasketBookInfo(b.getId(), b.getTitle(), b.getAuthor(), price, b.getRating(), book.getQuantity());
             result.add(finalBook);
         }
         return result;
@@ -122,6 +128,10 @@ public class BookService {
 
     public List<BookBasicInfo> getRecommendedBooks() {
         return bookDao.getRecommendedBooks().stream().map(BookBasicMapper::map).collect(Collectors.toList());
+    }
+
+    public DeliveryMethod getDeliveryMethod() {
+        return deliveryMethodDao.findDeliveryMethodByOrderId(CurrentOrderId.getOrderId());
     }
 
     private static class BookBasicMapper {

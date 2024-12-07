@@ -17,7 +17,6 @@
 
                 <div class="book-details">
                     <p class="book-author" title="${book.author}"><c:out value="${book.author}"/></p>
-                    <p class="book-price"><c:out value="${book.price}"/>zł</p>
                 </div>
 
                 <form action="quantity" method="get" class="book-form">
@@ -27,6 +26,7 @@
                         <input name="quantity" type="number" id="quantity" class="quantity-input" required min="0" value="${book.quantity}" onchange="this.form.submit()">
                     </div>
                 </form>
+                <p class="book-price"><c:out value="${book.price}"/>zł</p>
 
             </div>
         </div>

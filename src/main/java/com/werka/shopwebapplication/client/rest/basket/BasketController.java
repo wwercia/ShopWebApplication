@@ -1,4 +1,4 @@
-package com.werka.shopwebapplication.client.rest;
+package com.werka.shopwebapplication.client.rest.basket;
 
 import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.api.BasicBasketBookInfo;
@@ -15,11 +15,11 @@ import java.util.List;
 @WebServlet("/basket")
 public class BasketController extends HttpServlet {
 
-    private BookService bookService = new BookService();
+    private final BookService bookService = new BookService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("resultBooks", getBooksFromBasket());
+        setBooksAttributes(req);
         req.setAttribute("orderTotal", bookService.getOrderTotal());
         req.getRequestDispatcher("/WEB-INF/pages/basket.jsp").forward(req, resp);
     }
@@ -28,14 +28,23 @@ public class BasketController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("bookTitle");
         bookService.saveBook(title);
-        req.setAttribute("resultBooks", getBooksFromBasket());
+        setBooksAttributes(req);
         req.setAttribute("orderTotal", bookService.getOrderTotal());
         req.getRequestDispatcher("/WEB-INF/pages/basket.jsp").forward(req, resp);
     }
 
     private List<BasicBasketBookInfo> getBooksFromBasket() {
-        List<BasicBasketBookInfo> books = bookService.getBooksInBasket(DataHelper.getClientId());
-        return books;
+        return bookService.getBooksInBasket(DataHelper.getClientId());
+    }
+
+    private void setBooksAttributes(HttpServletRequest req) {
+        List<BasicBasketBookInfo> books =  getBooksFromBasket();
+        if (!books.isEmpty()) {
+            req.setAttribute("areBooksInBasket", "true");
+            req.setAttribute("resultBooks", getBooksFromBasket());
+        } else {
+            req.setAttribute("areBooksInBasket", "false");
+        }
     }
 
 }

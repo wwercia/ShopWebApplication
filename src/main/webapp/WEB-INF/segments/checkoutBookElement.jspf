@@ -1,0 +1,16 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+<div class="single-element-box">
+    <div class="book">
+
+        <img src="${pageContext.request.contextPath}/images/${book.title}.png" alt="image of the book" class="book-image">
+        <p class="book-title" title="${book.title}"><c:out value="${book.title}"/></p>
+
+        <div class="book-info">
+            <p class="book-price"><c:out value="${book.price}"/>zł</p>
+            <p class="book-quantity">Quantity: <c:out value="${book.quantity}"/></p>
+        </div>
+    </div>
+</div>

@@ -110,3 +110,26 @@ body {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Większy cień */
     transform: translateY(-2px); /*  uniesienie przycisku */
 }
+
+.fake-checkout-button {
+    margin-top: 40px;
+    display: inline-block;
+    text-decoration: none;
+    background-color: #79a5af;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: not-allowed;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.emptyBasketText {
+    color: white;
+    display: flex;
+    justify-content: center; /* Wyśrodkowanie poziome */
+    align-items: center;    /* Wyśrodkowanie pionowe */
+    height: 100%;
+}
