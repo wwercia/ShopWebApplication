@@ -11,10 +11,10 @@
 <html>
     <head>
         <title>Products</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/productsStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/products/productsStyles.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/sidebarStyles.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bookElementStyles.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/productElementsStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/products/bookElementStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/products/productElementsStyles.css">
     </head>
     <body>
         <div class="container">
@@ -24,7 +24,7 @@
 
                 <div class="top-box">
                     <a href="main" class="logo">BookShop</a>
-                    <form action="products" method="post" class="search-form">
+                    <form action="search" method="get" class="search-form">
                         <input class="searchedTextField" type="text" id="searchedText" name="searchedText" placeholder="What are you looking for?" autocomplete="off">
                         <button type="submit" hidden="hidden"></button>
                     </form>

@@ -13,10 +13,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Book Shop</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/mainPageStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main%20page/mainPageStyles.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/sidebarStyles.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bookElementStyles.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/mainPageElementsStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/products/bookElementStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main%20page/mainPageElementsStyles.css">
     </head>
     <body>
 

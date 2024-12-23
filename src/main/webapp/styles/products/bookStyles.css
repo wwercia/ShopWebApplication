@@ -17,7 +17,7 @@ h1 {
     display: flex;
     height: 100vh; /* Sprawia, że strona zajmuje całą wysokość przeglądarki */
 
-    background-image: url('../book-background.png');
+    background-image: url('../../book-background.png');
     /* url('leaves-background.png'); */
     background-position: right; /* Position the first image at the top and the second at the bottom */
     background-repeat: no-repeat; /* Ensure the images don't repeat */

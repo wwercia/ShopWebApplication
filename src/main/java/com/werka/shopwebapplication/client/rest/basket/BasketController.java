@@ -2,7 +2,7 @@ package com.werka.shopwebapplication.client.rest.basket;
 
 import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.api.BasicBasketBookInfo;
-import com.werka.shopwebapplication.domain.api.BookService;
+import com.werka.shopwebapplication.domain.api.services.BookService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,9 +28,21 @@ public class BasketController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("bookTitle");
         bookService.saveBook(title);
-        setBooksAttributes(req);
-        req.setAttribute("orderTotal", bookService.getOrderTotal());
-        req.getRequestDispatcher("/WEB-INF/pages/basket.jsp").forward(req, resp);
+
+        // Pobierz URL poprzedniej strony
+        String referer = req.getHeader("Referer");
+
+        // Przekieruj użytkownika na poprzednią stronę
+        if (referer != null) {
+            resp.sendRedirect(referer);
+        } else {
+            // Jeśli brak referera, przekieruj na domyślną stronę
+            resp.sendRedirect("/WEB-INF/pages/products.jsp");
+        }
+
+        //setBooksAttributes(req);
+        //req.setAttribute("orderTotal", bookService.getOrderTotal());
+        //req.getRequestDispatcher("/WEB-INF/pages/basket.jsp").forward(req, resp);
     }
 
     private List<BasicBasketBookInfo> getBooksFromBasket() {

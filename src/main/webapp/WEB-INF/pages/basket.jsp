@@ -11,9 +11,9 @@
 <html>
     <head>
         <title>Basket</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/basketStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/basket/basketStyles.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/sidebarStyles.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/basketBookElementStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/basket/basketBookElementStyles.css">
     </head>
     <body>
         <div class="container">

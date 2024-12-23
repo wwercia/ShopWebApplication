@@ -1,7 +1,7 @@
 package com.werka.shopwebapplication.client.home;
 
 import com.werka.shopwebapplication.domain.api.BookBasicInfo;
-import com.werka.shopwebapplication.domain.api.BookService;
+import com.werka.shopwebapplication.domain.api.services.BookService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

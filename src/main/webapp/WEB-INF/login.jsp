@@ -9,7 +9,7 @@
 <html>
     <head>
         <title>login</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/logAndRegStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main%20page/logAndRegStyles.css">
     </head>
     <body>
 

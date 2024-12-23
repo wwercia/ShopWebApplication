@@ -1,6 +1,6 @@
 package com.werka.shopwebapplication.client.rest.basket;
 
-import com.werka.shopwebapplication.domain.api.BookService;
+import com.werka.shopwebapplication.domain.api.services.BookService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

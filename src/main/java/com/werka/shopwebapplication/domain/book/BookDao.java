@@ -13,7 +13,7 @@ public class BookDao extends BaseDao {
     private List<Book> allBooks = null;
 
     public List<Book> findAll() {
-        if(allBooks == null) {
+        if (allBooks == null) {
             final String sql = "SELECT * FROM books";
             List<Book> resultList = new ArrayList<>();
             try (Connection connection = getConnection();
@@ -27,7 +27,7 @@ public class BookDao extends BaseDao {
             }
             allBooks = resultList;
             return resultList;
-        }else {
+        } else {
             return allBooks;
         }
     }
@@ -53,12 +53,12 @@ public class BookDao extends BaseDao {
     public List<Book> getRecommendedBooks() {
 
         List<String> titles = new ArrayList<>();
-        titles.add("Niewidzialne życie Addie LaRue");
-        titles.add("Flaw(less)");
-        titles.add("Rodzina Monet");
+        titles.add("Caraval");
+        titles.add("Powerless");
+        titles.add("The Prison Healer");
 
         List<Book> result = new ArrayList<>();
-        for(String title : titles){
+        for (String title : titles) {
             final String sql = "SELECT * FROM books WHERE title = ?";
             try (Connection connection = getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -74,12 +74,28 @@ public class BookDao extends BaseDao {
         return result;
     }
 
+    public List<Book> findBooksInSeries(String series) {
+        List<Book> result = new ArrayList<>();
+        final String sql = "SELECT * FROM books WHERE series = ?";
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, series);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                result.add(getBookFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
     public Optional<Book> findBookById(int bookId) {
 
         final String sql = "SELECT * FROM books WHERE id = ?";
         Book result = null;
         try (Connection connection = getConnection();
-             PreparedStatement  statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, bookId + "");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -95,7 +111,7 @@ public class BookDao extends BaseDao {
         final String sql = "SELECT * FROM books WHERE title = ?";
         Book result = null;
         try (Connection connection = getConnection();
-             PreparedStatement  statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, titlee);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -105,6 +121,42 @@ public class BookDao extends BaseDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Optional<Book> findSearchedBookByTitle(String title) {
+        final String sql = "SELECT * FROM books WHERE LOWER(title) = LOWER(?);";
+        Book result = null;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, title);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                result = getBookFromResultSet(resultSet);
+            }
+            if(result==null){
+                return Optional.empty();
+            }else {
+                return Optional.of(result);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Book> findSearchedBooksWithTextInTitle(String text) {
+        List<Book> result = new ArrayList<>();
+        final String sql = "SELECT * FROM books WHERE title LIKE ?";
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "%" + text + "%"); // Dodanie wildcardów dla wyszukiwania zawierającego tekst
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                result.add(getBookFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
     }
 
     private Book getBookFromResultSet(ResultSet resultSet) throws SQLException {

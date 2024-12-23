@@ -1,7 +1,7 @@
 package com.werka.shopwebapplication.client.rest.checkout;
 
-import com.werka.shopwebapplication.domain.api.BookService;
-import com.werka.shopwebapplication.domain.api.OrderService;
+import com.werka.shopwebapplication.domain.api.services.BookService;
+import com.werka.shopwebapplication.domain.api.services.OrderService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

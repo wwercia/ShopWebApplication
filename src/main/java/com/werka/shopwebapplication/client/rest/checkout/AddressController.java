@@ -2,9 +2,9 @@ package com.werka.shopwebapplication.client.rest.checkout;
 
 import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.address.ClientAddressData;
-import com.werka.shopwebapplication.domain.api.BookService;
+import com.werka.shopwebapplication.domain.api.services.BookService;
 import com.werka.shopwebapplication.domain.api.ClientAddressDataInfo;
-import com.werka.shopwebapplication.domain.api.ClientService;
+import com.werka.shopwebapplication.domain.api.services.ClientService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

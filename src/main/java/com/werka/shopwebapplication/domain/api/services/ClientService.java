@@ -1,8 +1,9 @@
-package com.werka.shopwebapplication.domain.api;
+package com.werka.shopwebapplication.domain.api.services;
 
 import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.address.ClientAddressData;
 import com.werka.shopwebapplication.domain.address.ClientAddressDataDao;
+import com.werka.shopwebapplication.domain.api.ClientAddressDataInfo;
 import com.werka.shopwebapplication.domain.client.Client;
 import com.werka.shopwebapplication.domain.client.ClientDAO;
 
@@ -47,7 +48,6 @@ public class ClientService {
 
 
     public void saveClientAddressInfo(ClientAddressData clientAddressData) {
-
         addressDataDao.save(clientAddressData);
     }
 

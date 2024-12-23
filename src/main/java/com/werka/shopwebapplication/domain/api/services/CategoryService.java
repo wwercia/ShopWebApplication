@@ -1,6 +1,7 @@
-package com.werka.shopwebapplication.domain.api;
+package com.werka.shopwebapplication.domain.api.services;
 
 
+import com.werka.shopwebapplication.domain.api.CategoryName;
 import com.werka.shopwebapplication.domain.category.Category;
 import com.werka.shopwebapplication.domain.category.CategoryDao;
 

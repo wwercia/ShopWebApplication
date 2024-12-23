@@ -11,7 +11,7 @@
 <html>
     <head>
         <title>Book</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/bookStyles.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/products/bookStyles.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/sidebarStyles.css">
     </head>
 

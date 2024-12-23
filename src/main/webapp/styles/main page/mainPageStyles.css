@@ -56,7 +56,7 @@ h1 {
 
 .box {
     width: 90%;
-    background-image: url('../leaves-background.png');
+    background-image: url('../../leaves-background.png');
     /* url('leaves-background.png'); */
     background-position: right; /* Position the first image at the top and the second at the bottom */
     background-repeat: no-repeat; /* Ensure the images don't repeat */

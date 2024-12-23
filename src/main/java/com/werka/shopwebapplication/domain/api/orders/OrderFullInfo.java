@@ -1,5 +1,6 @@
-package com.werka.shopwebapplication.domain.api;
+package com.werka.shopwebapplication.domain.api.orders;
 
+import com.werka.shopwebapplication.domain.api.BasicBasketBookInfo;
 import com.werka.shopwebapplication.domain.delivery.DeliveryMethod;
 
 import java.util.List;

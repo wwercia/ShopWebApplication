@@ -24,6 +24,7 @@
     background-color: #42727e;
 }
 
+
 .book img {
     max-height: 240px;
     height: auto;
@@ -62,4 +63,15 @@
     font-weight: bold;
     font-size: 14px;
     color: #2b2b2b;
+}
+
+
+.book-link {
+    text-decoration: none;
+    color: inherit; /* Aby link dziedziczył kolor od elementu nadrzędnego */
+}
+
+.book-link .book {
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }

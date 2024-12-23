@@ -1,7 +1,8 @@
-package com.werka.shopwebapplication.domain.api;
+package com.werka.shopwebapplication.domain.api.services;
 
 import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.CurrentOrderId;
+import com.werka.shopwebapplication.domain.api.*;
 import com.werka.shopwebapplication.domain.basket.Basket;
 import com.werka.shopwebapplication.domain.basket.BasketDao;
 import com.werka.shopwebapplication.domain.book.Book;
@@ -76,6 +77,20 @@ public class BookService {
                 .map(BookFullInfoMapper::map);
     }
 
+    public List<BookFullInfo> findSearchedBookByTitle(String title) {
+        Optional<BookFullInfo> book = bookDao.findSearchedBookByTitle(title).map(BookFullInfoMapper::map);
+        List<BookFullInfo> booksFound = new ArrayList<>();
+        if(book.isEmpty()){
+            List<BookFullInfo> books = bookDao.findSearchedBooksWithTextInTitle(title).stream().map(BookFullInfoMapper::map).collect(Collectors.toList());
+            if(!books.isEmpty()){
+                booksFound = books;
+            }
+        }else {
+            booksFound.add(book.get());
+        }
+        return booksFound;
+    }
+
     public Optional<BookBasicInfo> findBookBasicInfoByTitle(String title) {
         return bookDao.findBookByTitle(title)
                 .map(BookBasicMapper::map);
@@ -84,7 +99,6 @@ public class BookService {
     public void saveBook(String title) {
         BookBasicInfo bookBasicInfo = findBookBasicInfoByTitle(title).orElseThrow();
         int clientId = DataHelper.getClientId();
-        System.out.println("client id = " + clientId);
         basketDao.saveBook(new Basket(clientId, bookBasicInfo.getId()));
     }
 
@@ -98,10 +112,22 @@ public class BookService {
     }
 
     public void updateBookQuantity(String title, int quantity) {
-
         List<BasicBasketBookInfo> booksInBasket = getBooksInBasket(DataHelper.getClientId());
         basketDao.updateBookQuantity(title, quantity, booksInBasket);
+    }
 
+    public List<BookBasicInfo> findBooksInSeries(BookFullInfo book) {
+        List<BookBasicInfo> booksInSeries =  bookDao.findBooksInSeries(book.getSeries()).stream().map(BookBasicMapper::map).collect(Collectors.toList());
+        BookBasicInfo bookToRemove = null;
+        for(BookBasicInfo bookk : booksInSeries) {
+            if(book.getTitle().equals(bookk.getTitle())){
+                bookToRemove = bookk;
+            }
+        }
+        if(bookToRemove != null) {
+            booksInSeries.remove(bookToRemove);
+        }
+        return booksInSeries;
     }
 
     public List<BasicBasketBookInfo> getBooksInBasket(int clientId) {

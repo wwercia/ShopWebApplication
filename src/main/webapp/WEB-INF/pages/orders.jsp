@@ -20,7 +20,25 @@
             <%@ include file="../segments/sidebar.jspf" %>
 
             <main class="content">
-                <h1>Orders page!</h1>
+
+                <h1 class="orders-text">Your orders:</h1>
+
+                <% if(request.getAttribute("isResult").equals("true")){ %>
+                    <div class="orders">
+                        <c:forEach var="singleOrderElement" items="${requestScope.result}">
+                            <div class="single-order">
+                                <h2>Numer zamówienia: ${singleOrderElement.orderId}</h2>
+                                <c:forEach var="book" items="${singleOrderElement.orderedBooks}">
+                                    <%@ include file="../segments/orderBookElement.jspf"%>
+                                </c:forEach>
+                                <p class="total-text">Total: ${singleOrderElement.total}</p>
+                            </div>
+                        </c:forEach>
+                    </div>
+                <% } else { %>
+                    <h2 class="no-orders-text">You don't have any orders right now. Time to go shopping...</h2>
+                <% } %>
+
             </main>
         </div>
         <script src="${pageContext.request.contextPath}/script.js"></script>

@@ -1,7 +1,7 @@
 package com.werka.shopwebapplication.client.rest;
 
 import com.werka.shopwebapplication.domain.api.BookFullInfo;
-import com.werka.shopwebapplication.domain.api.BookService;
+import com.werka.shopwebapplication.domain.api.services.BookService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,4 +24,5 @@ public class BookController extends HttpServlet {
         request.setAttribute("bookInfo", book);
         request.getRequestDispatcher("/WEB-INF/pages/book.jsp").forward(request, response);
     }
+
 }

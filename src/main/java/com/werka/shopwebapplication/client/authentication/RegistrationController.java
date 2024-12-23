@@ -1,8 +1,6 @@
 package com.werka.shopwebapplication.client.authentication;
 
-import com.werka.shopwebapplication.domain.api.ClientService;
-import com.werka.shopwebapplication.domain.client.Client;
-import com.werka.shopwebapplication.domain.client.ClientDAO;
+import com.werka.shopwebapplication.domain.api.services.ClientService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

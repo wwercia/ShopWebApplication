@@ -35,7 +35,7 @@
                                 <label for="standard">
                                     <div class="delivery-details">
                                         <span class="delivery-type">Standard Delivery</span>
-                                        <span class="delivery-price">$5.00</span>
+                                        <span class="delivery-price">10zł</span>
                                         <span class="delivery-time">2-3 business days</span>
                                     </div>
                                 </label>
@@ -45,7 +45,7 @@
                                 <label for="express">
                                     <div class="delivery-details">
                                         <span class="delivery-type">Express Delivery</span>
-                                        <span class="delivery-price">$10.00</span>
+                                        <span class="delivery-price">15zł</span>
                                         <span class="delivery-time">Next day</span>
                                     </div>
                                 </label>

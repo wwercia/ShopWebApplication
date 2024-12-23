@@ -1,0 +1,110 @@
+package com.werka.shopwebapplication.domain.api.services;
+
+import com.werka.shopwebapplication.config.DataHelper;
+import com.werka.shopwebapplication.domain.CurrentOrderId;
+import com.werka.shopwebapplication.domain.api.*;
+import com.werka.shopwebapplication.domain.api.orders.OrderBookInfo;
+import com.werka.shopwebapplication.domain.api.orders.OrderFullInfo;
+import com.werka.shopwebapplication.domain.api.orders.OrdersInfo;
+import com.werka.shopwebapplication.domain.api.orders.ordersPage.OrderedBook;
+import com.werka.shopwebapplication.domain.api.orders.ordersPage.SingleOrderInfo;
+import com.werka.shopwebapplication.domain.basket.BasketDao;
+import com.werka.shopwebapplication.domain.book.Book;
+import com.werka.shopwebapplication.domain.book.BookDao;
+import com.werka.shopwebapplication.domain.delivery.DeliveryMethod;
+import com.werka.shopwebapplication.domain.delivery.DeliveryMethodDao;
+import com.werka.shopwebapplication.domain.orders.Order;
+import com.werka.shopwebapplication.domain.orders.OrderBookDao;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
+
+public class OrderService {
+
+    private final BookService bookService = new BookService();
+    private final DeliveryMethodDao deliveryMethodDao = new DeliveryMethodDao();
+    private final OrderBookDao orderDao = new OrderBookDao();
+    private final BasketDao basketDao = new BasketDao();
+    private final BookDao bookDao = new BookDao();
+
+    public OrderFullInfo getOrderInfo() {
+        List<BasicBasketBookInfo> books = bookService.getBooksInBasket(DataHelper.getClientId());
+        double totalPrice = bookService.getOrderTotal();
+        DeliveryMethod deliveryMethod = bookService.getDeliveryMethod();
+        return new OrderFullInfo(books, totalPrice, deliveryMethod);
+    }
+
+    public void saveDeliveryMethod(String method) {
+        CurrentOrderId.setOrderId(orderDao.getNewOrderId());
+        boolean isDeliverySaved = deliveryMethodDao.isDeliverySaved();
+        if(isDeliverySaved) {
+            deliveryMethodDao.updateDeliveryMethod(method);
+        } else {
+            int orderId = CurrentOrderId.getOrderId();
+            deliveryMethodDao.saveDeliveryMethod(method, orderId);
+        }
+    }
+
+    public void saveOrder() {
+        for(BasicBasketBookInfo book : bookService.getBooksInBasket(DataHelper.getClientId())) {
+            orderDao.saveOrder(book.getId(), book.getQuantity());
+        }
+    }
+
+    public void removeBooksFromBasket() {
+        for(BasketBooksInfo book : basketDao.getBooksInBasket(DataHelper.getClientId())) {
+            basketDao.removeBookFromBasket(book.getBookId());
+        }
+    }
+
+    public List<SingleOrderInfo> getOrders() {
+
+        List<SingleOrderInfo> result = new ArrayList<>();
+        List<Order> orders = orderDao.findAll();
+
+        SingleOrderInfo singleOrderInfo = null;
+        int orderId = 0;
+
+        for(Order order : orders) {
+            if(order.getClientId() == DataHelper.getClientId()){
+                if(orderId == 0)
+                    orderId = order.getOrderId();
+
+                if(orderId == order.getOrderId()){
+                    if(singleOrderInfo == null) {
+                        singleOrderInfo = new SingleOrderInfo(order.getOrderId(), new ArrayList<>(), 0.0);
+                    }
+                    Book book = bookDao.findBookById(order.getBookId()).orElseThrow();
+                    singleOrderInfo.addOrderedBook(new OrderedBook(book.getId(), book.getTitle(), book.getAuthor(), book.getPrice(), order.getQuantity()));
+                    singleOrderInfo.setTotal(singleOrderInfo.getTotal() + book.getPrice().doubleValue() * order.getQuantity());
+                }else {
+                    result.add(singleOrderInfo);
+                    singleOrderInfo = new SingleOrderInfo(order.getOrderId(), new ArrayList<>(), 0.0);
+                    Book book = bookDao.findBookById(order.getBookId()).orElseThrow();
+                    singleOrderInfo.addOrderedBook(new OrderedBook(book.getId(), book.getTitle(), book.getAuthor(), book.getPrice(), order.getQuantity()));
+                    singleOrderInfo.setTotal(singleOrderInfo.getTotal() + book.getPrice().doubleValue() * order.getQuantity());
+                }
+                orderId = order.getOrderId();
+            }
+        }
+        if(singleOrderInfo != null) {
+            result.add(singleOrderInfo);
+        }
+
+        return result;
+    }
+
+    private static class OrderMapper {
+        static OrderBookInfo map(Order c) {
+            return new OrderBookInfo(
+                    c.getId(),
+                    c.getBookId(),
+                    c.getClientId(),
+                    c.getOrderId()
+            );
+        }
+    }
+
+}

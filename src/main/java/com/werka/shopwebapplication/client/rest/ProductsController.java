@@ -1,9 +1,8 @@
 package com.werka.shopwebapplication.client.rest;
 
-import com.werka.shopwebapplication.domain.api.BookBasicInfo;
-import com.werka.shopwebapplication.domain.api.BookService;
-import com.werka.shopwebapplication.domain.api.CategoryName;
-import com.werka.shopwebapplication.domain.api.CategoryService;
+import com.werka.shopwebapplication.domain.api.*;
+import com.werka.shopwebapplication.domain.api.services.BookService;
+import com.werka.shopwebapplication.domain.api.services.CategoryService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -41,13 +40,6 @@ public class ProductsController extends HttpServlet {
         request.setAttribute("sortBy", sortBy);
         request.setAttribute("category", category);
         request.getRequestDispatcher("/WEB-INF/pages/products.jsp").forward(request, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        //obsługuje wyszukiwanie poszczególnych wyników przez użytkownika (pasek wyszukiwania)
-
     }
 
 }

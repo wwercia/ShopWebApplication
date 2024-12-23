@@ -22,3 +22,114 @@ h1 {
 .content {
     width: 90%;
 }
+
+.orders-text {
+    margin-top: 2%;
+    justify-self: center;
+}
+
+/* Stylizacja kontenera zamówień */
+.orders {
+    margin-top: 2%;
+    justify-self: center;
+    width: 80%;
+    max-height: 85%;
+    height: auto;
+    background-color: #44707a;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+/* Stylizacja pojedynczego zamówienia */
+.single-order {
+    background-color: #a5c8cf;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column; /* Ułożenie elementów w kolumnie */
+    gap: 10px; /* Odstęp między elementami w zamówieniu */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+}
+
+/* Nagłówek z numerem zamówienia */
+.single-order h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+/* Tekst całkowitej kwoty */
+.single-order .total-text {
+    font-size: 23px;
+    font-weight: bold;
+    text-align: right; /* Wyrównanie do prawej */
+}
+
+/* Stylizacja dla book-element-box (zgodna z wcześniejszą) */
+.book-element-box {
+    margin: 10px 0;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #a5c8cf;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.book img {
+    max-height: 150px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    height: auto;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    gap: 5px;
+    width: 70%;
+}
+
+.book-title {
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.book-author {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.book-info-2{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    gap: 5px;
+    margin-left: 8%;
+}
+
+.quantity,
+.book-price {
+    font-size: 20px;
+}

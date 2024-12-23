@@ -32,11 +32,9 @@ public class BasketDao extends BaseDao {
     }
 
     public void saveBook(Basket basket) {
-
         List<BasketBooksInfo> list = getBooksInBasket(DataHelper.getClientId());
         int quantity = 0;
         for(BasketBooksInfo book : list) {
-            System.out.println(book.getBookId() == basket.getBookId());
             if(book.getBookId() == basket.getBookId()){
                 quantity = book.getQuantity();
             }
@@ -45,11 +43,8 @@ public class BasketDao extends BaseDao {
         if(quantity > 1){
             try(Connection connection = getConnection();
                 Statement statement = connection.createStatement()){
-
                 final String sql = "UPDATE basket SET quantity = '" + quantity + "' WHERE (`book_id` = '" + basket.getBookId() +"');";
                 int updatedRows = statement.executeUpdate(sql);
-                System.out.println("updated rows: " + updatedRows);
-
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -106,7 +101,6 @@ public class BasketDao extends BaseDao {
             int id = getId(book.getId());
             try(Connection connection = getConnection();
                 Statement statement = connection.createStatement()){
-                System.out.println("przed usunieciem");
                 final String sql = "DELETE FROM basket WHERE (`id` = '" + id + "');";
                 statement.executeUpdate(sql);
             } catch (SQLException e) {
