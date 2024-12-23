@@ -1,4 +1,4 @@
-
+/* Resetowanie domyślnych stylów przeglądarki */
 * {
     margin: 0;
     padding: 0;
@@ -15,32 +15,90 @@ h1 {
 
 .container {
     display: flex;
-    height: 100vh; /* Sprawia, że strona zajmuje całą wysokość przeglądarki */
-
-    background-image: url('../../book-background.png');
-    /* url('leaves-background.png'); */
-    background-position: right; /* Position the first image at the top and the second at the bottom */
-    background-repeat: no-repeat; /* Ensure the images don't repeat */
-    background-size: contain; /* Adjusts the size of the background images */
-    background-color: white; /* Fallback color */
-
+    height: 100vh;
+    justify-content: center;
 }
 
 .content {
-    margin-top: 13%;
-    margin-left: 3%;
     width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: block;
+    font-size: 45px;
+    font-weight: bold;
+    color: #2b4950;
+    text-decoration: none;
+    padding-top: 50px;
+    padding-left: 100px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.logo:hover {
+    color: #4e8491;
+    transform: scale(1.1);
+}
+
+.top-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.search-form {
+    margin-top: 50px;
+    margin-left: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.searchedTextField {
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid #ccc;
+    font-size: 16px;
+    text-align: center;
+    width: 600px;
+    transition: all 0.3s ease;
+}
+
+.searchedTextField:focus {
+    border-color: #4e8491;
+    box-shadow: 0 0 5px rgba(78, 132, 145, 0.5);
+    outline: none;
+}
+
+.searchedTextField::placeholder {
+    color: #999;
+}
+
+.custom-hr {
+    margin-top: 3%;
+    margin-left: 3%;
+    border: none;
+    border-top: 3px solid #335861;
+    width: 93%;
+}
+
+.content2 {
+    margin-top: 3%;
+    margin-left: 3%;
+    width: 95%;
     padding: 20px;
     height: 60%;
     display: flex;
 }
 
-
 /* Stylizacja kontenera info */
 .info{
     display: block;
     align-items: center;
-    margin-left: 8%;
+    margin-left: 5%;
+    width: 45%;
 }
 
 /* Styl dla przycisku Add to Basket */
@@ -54,7 +112,7 @@ h1 {
     font-size: 25px;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 9%;
+    margin-left: 8%;
     text-align: center; /* Wyrównuje tekst wewnątrz przycisku */
 }
 
@@ -72,7 +130,7 @@ h1 {
     font-size: 35px;
     font-weight: bold;
     margin: 5px 0;
-    width: 900px; /* Ustaw szerokość zgodnie z potrzebami */
+    width: 90%;
     overflow: hidden;
     white-space: wrap;
     text-overflow: ellipsis;
@@ -82,7 +140,7 @@ h1 {
     margin-top: 2%;
     font-size: 25px;
     color: #555;
-    width: 650px; /* Ustaw szerokość zgodnie z potrzebami */
+    width: 90%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -91,6 +149,7 @@ h1 {
 .book-rating {
     font-size: 23px;
     color: #595959;
+    width: 90%;
 }
 
 .book-price {
@@ -102,7 +161,7 @@ h1 {
 
 .book-description{
     margin-top: 5%;
-    width: 670px;
+    width: 90%;
     overflow: hidden;
     white-space: wrap;
     text-overflow: ellipsis;
@@ -117,4 +176,80 @@ h1 {
 .book-cover,
 .book-publicationDate {
     margin: 8px 0; /* Odstęp górny i dolny */
+}
+
+.other-books-text {
+    align-self: center;
+    justify-self: center;
+}
+
+.books-in-series-container {
+    width: 55%;
+    max-height: 100%;
+}
+
+.books-container {
+    margin-top: 2%;
+    width: 100%;
+    max-height: 95%;
+    flex-wrap: wrap; /* Pozwala na zawijanie książek */
+    gap: 15px; /* Odstęp między książkami */
+    overflow-y: auto; /* Dodaj przewijanie pionowe, gdy zawartość przekracza maksymalną wysokość */
+    background-color: #44707a;
+    border-radius: 10px;
+}
+
+.single-element-box {
+    justify-self: center;
+    margin: 15px;
+    width: 95%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #bcdbe1;
+}
+
+.book-imagee {
+    max-height: 65px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.book-titlee {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-self: center;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.book-pricee {
+    font-weight: bold;
+    font-size: 15px;
+    color: #2b2b2b;
+}
+
+.book-info {
+    display: block;
+    align-content: center;
+    margin-left: 8%;
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+}
+.background {
+    display: flex;
+    width: 90%;
+    height: 100%;
+    background-image: url('../../searched-book-background.png');
+    background-position: right; /* Position the first image at the top and the second at the bottom */
+    background-repeat: no-repeat; /* Ensure the images don't repeat */
+    background-size: contain; /* Adjusts the size of the background images */
+    background-color: white;
 }

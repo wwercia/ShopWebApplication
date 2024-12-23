@@ -34,10 +34,14 @@ public class SearchController extends HttpServlet {
             }else {
                 request.setAttribute("isMoreThanOneBookFound", "false");
                 request.setAttribute("isBookFound", "true");
-                List<BookBasicInfo> booksInSeries = bookService.findBooksInSeries(books.get(0));
-                if(!booksInSeries.isEmpty()){
-                    request.setAttribute("areBooksInSeries", "true");
-                    request.setAttribute("booksInSeries", booksInSeries);
+                if(!books.get(0).getSeries().isEmpty()) {
+                    List<BookBasicInfo> booksInSeries = bookService.findBooksInSeries(books.get(0));
+                    if (!booksInSeries.isEmpty()) {
+                        request.setAttribute("areBooksInSeries", "true");
+                        request.setAttribute("booksInSeries", booksInSeries);
+                    } else {
+                        request.setAttribute("areBooksInSeries", "false");
+                    }
                 }else {
                     request.setAttribute("areBooksInSeries", "false");
                 }
