@@ -66,10 +66,15 @@ h1 {
 .single-order .total-text {
     font-size: 23px;
     font-weight: bold;
-    text-align: right; /* Wyrównanie do prawej */
+    text-align: right;
 }
 
-/* Stylizacja dla book-element-box (zgodna z wcześniejszą) */
+.delivery-cost {
+    font-size: 17px;
+    font-weight: bold;
+    text-align: right;
+}
+
 .book-element-box {
     margin: 10px 0;
     width: 100%;

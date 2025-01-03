@@ -74,14 +74,22 @@ public class OrderService {
 
                 if(orderId == order.getOrderId()){
                     if(singleOrderInfo == null) {
-                        singleOrderInfo = new SingleOrderInfo(order.getOrderId(), new ArrayList<>(), 0.0);
+                        singleOrderInfo = new SingleOrderInfo(order.getOrderId(), new ArrayList<>(), 0.0, "0");
                     }
                     Book book = bookDao.findBookById(order.getBookId()).orElseThrow();
                     singleOrderInfo.addOrderedBook(new OrderedBook(book.getId(), book.getTitle(), book.getAuthor(), book.getPrice(), order.getQuantity()));
                     singleOrderInfo.setTotal(singleOrderInfo.getTotal() + book.getPrice().doubleValue() * order.getQuantity());
                 }else {
+                    DeliveryMethod deliveryMethod = deliveryMethodDao.findDeliveryMethodByOrderId(orderId);
+                    String cost = "";
+                    if(deliveryMethod.getDisplayName().equals("pickup")) {
+                        cost = "free";
+                    }else {
+                        cost = deliveryMethod.getPrice() + "";
+                    }
+                    singleOrderInfo.setDeliveryCost(cost);
                     result.add(singleOrderInfo);
-                    singleOrderInfo = new SingleOrderInfo(order.getOrderId(), new ArrayList<>(), 0.0);
+                    singleOrderInfo = new SingleOrderInfo(order.getOrderId(), new ArrayList<>(), 0.0, "0");
                     Book book = bookDao.findBookById(order.getBookId()).orElseThrow();
                     singleOrderInfo.addOrderedBook(new OrderedBook(book.getId(), book.getTitle(), book.getAuthor(), book.getPrice(), order.getQuantity()));
                     singleOrderInfo.setTotal(singleOrderInfo.getTotal() + book.getPrice().doubleValue() * order.getQuantity());
@@ -90,6 +98,17 @@ public class OrderService {
             }
         }
         if(singleOrderInfo != null) {
+            DeliveryMethod deliveryMethod = deliveryMethodDao.findDeliveryMethodByOrderId(orderId);
+            String cost = "";
+            if(deliveryMethod.getDisplayName().equals("pickup")) {
+                cost = "free";
+            }else {
+                cost = deliveryMethod.getPrice() + "";
+            }
+            singleOrderInfo.setDeliveryCost(cost);
+            double total = singleOrderInfo.getTotal();
+            BigDecimal roundedTotal = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP);
+            singleOrderInfo.setTotal(roundedTotal.doubleValue());
             result.add(singleOrderInfo);
         }
 

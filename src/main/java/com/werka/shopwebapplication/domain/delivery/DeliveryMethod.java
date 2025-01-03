@@ -1,9 +1,9 @@
 package com.werka.shopwebapplication.domain.delivery;
 
 public enum DeliveryMethod {
-    STANDARD("standard", 5.00, "2-3 business days"),
-    EXPRESS("express", 10.00, "Next day"),
-    PICKUP("pickup", 0.00, "Ready in 2 hours");
+    STANDARD("standard", 10, "2-3 business days"),
+    EXPRESS("express", 15, "Next day"),
+    PICKUP("pickup", 0, "Ready in 2 hours");
 
     private final String displayName;
     private final double price;

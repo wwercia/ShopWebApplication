@@ -7,11 +7,13 @@ public class SingleOrderInfo {
     private int orderId;
     private List<OrderedBook> orderedBooks;
     private double total;
+    private String deliveryCost;
 
-    public SingleOrderInfo(int orderId, List<OrderedBook> orderedBooks, double total) {
+    public SingleOrderInfo(int orderId, List<OrderedBook> orderedBooks, double total, String deliveryCost) {
         this.orderId = orderId;
         this.orderedBooks = orderedBooks;
         this.total= total;
+        this.deliveryCost = deliveryCost;
     }
 
     public void addOrderedBook(OrderedBook orderedBook) {
@@ -40,5 +42,13 @@ public class SingleOrderInfo {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public String getDeliveryCost() {
+        return deliveryCost;
+    }
+
+    public void setDeliveryCost(String deliveryCost) {
+        this.deliveryCost = deliveryCost;
     }
 }

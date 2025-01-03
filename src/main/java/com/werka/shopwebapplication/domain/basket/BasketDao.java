@@ -88,7 +88,6 @@ public class BasketDao extends BaseDao {
 
     public void updateBookQuantity(String title, int quantity, List<BasicBasketBookInfo> booksInBasket) {
 
-
         BasicBasketBookInfo book = null;
         for(BasicBasketBookInfo bookk : booksInBasket) {
             if(bookk.getTitle().equals(title)){

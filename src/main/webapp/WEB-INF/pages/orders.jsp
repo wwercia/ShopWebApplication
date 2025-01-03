@@ -20,9 +20,7 @@
             <%@ include file="../segments/sidebar.jspf" %>
 
             <main class="content">
-
                 <h1 class="orders-text">Your orders:</h1>
-
                 <% if(request.getAttribute("isResult").equals("true")){ %>
                     <div class="orders">
                         <c:forEach var="singleOrderElement" items="${requestScope.result}">
@@ -32,6 +30,7 @@
                                     <%@ include file="../segments/orderBookElement.jspf"%>
                                 </c:forEach>
                                 <p class="total-text">Total: ${singleOrderElement.total}</p>
+                                <p class="delivery-cost">+ Delivery cost: ${singleOrderElement.deliveryCost} zł</p>
                             </div>
                         </c:forEach>
                     </div>

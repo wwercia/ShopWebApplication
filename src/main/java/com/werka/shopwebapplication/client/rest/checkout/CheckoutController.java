@@ -25,7 +25,6 @@ public class CheckoutController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //jeśli koszyk jest pusty przekieruj do koszyka
-
         if(bookService.getOrderTotal() == 0) {
             response.sendRedirect(request.getContextPath() + "/basket");
             return;
