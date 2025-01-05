@@ -17,11 +17,14 @@
     </head>
         <body>
         <div class="container">
-            <a href="main" class="logo">BookShop</a>
             <main class="content1">
                 <div class="content2">
 
                     <h1 class="text">Thanks for ordering!</h1>
+                    <div class="back-section">
+                        <p>Shop for more:</p>
+                        <a href="main" class="logo">BookShop</a>
+                    </div>
 
                 </div>
             </main>

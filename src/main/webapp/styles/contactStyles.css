@@ -9,16 +9,45 @@ body {
     font-family: Arial, sans-serif;
 }
 
-h1 {
-    text-align: center;
+.main {
+    width: 90%;
+    justify-content: center;
+    align-content: center;
 }
 
 .container {
     display: flex;
+    flex-direction: row;
     height: 100vh; /* Sprawia, że strona zajmuje całą wysokość przeglądarki */
-    justify-content: center;
 }
 
 .content {
+    justify-self: center;
+    border-radius: 10px;
+    width: 60%;
+    height: 70%;
+    justify-items: center;
+    align-content: center;
+    background-color: #44707a;
+}
+
+.content2{
+    justify-self: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90%;
+    height: 85%;
+    justify-items: center;
+    align-content: center;
+    background-color: #a5c8cf;
+}
+
+h1 {
+    margin-bottom: 5%;
+    font-size: 35px;
+}
+
+p {
+    font-size: 25px;
+    margin-bottom: 1%;
 }

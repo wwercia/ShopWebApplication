@@ -71,7 +71,7 @@
                 </div>
 
                 <form action="basket" method="post">
-                    <input type="hidden" name="bookTitle" value="${requestScope.book.title}">
+                    <input type="hidden" name="bookTitle" value="${requestScope.bookInfo.title}">
                     <button type="submit" class="add-to-basket">Add to Basket</button>
                 </form>
 
