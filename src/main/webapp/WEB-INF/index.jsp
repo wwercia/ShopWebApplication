@@ -18,6 +18,7 @@
             <form action="log" method="get">
                 <button>Log in</button>
             </form>
+            <p class="wrong-data-info">${requestScope.information}</p>
             <br>
             <form action="registration" method="get">
                 <button>Register</button>

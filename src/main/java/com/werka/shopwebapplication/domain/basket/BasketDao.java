@@ -1,9 +1,6 @@
 package com.werka.shopwebapplication.domain.basket;
 
-import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.api.*;
-import com.werka.shopwebapplication.domain.book.Book;
-import com.werka.shopwebapplication.domain.book.BookDao;
 import com.werka.shopwebapplication.domain.common.BaseDao;
 
 import java.sql.*;
@@ -32,7 +29,7 @@ public class BasketDao extends BaseDao {
     }
 
     public void saveBook(Basket basket) {
-        List<BasketBooksInfo> list = getBooksInBasket(DataHelper.getClientId());
+        List<BasketBooksInfo> list = getBooksInBasket(basket.getClientId());
         int quantity = 0;
         for(BasketBooksInfo book : list) {
             if(book.getBookId() == basket.getBookId()){
@@ -86,8 +83,7 @@ public class BasketDao extends BaseDao {
         return list;
     }
 
-    public void updateBookQuantity(String title, int quantity, List<BasicBasketBookInfo> booksInBasket) {
-
+    public void updateBookQuantity(String title, int quantity, List<BasicBasketBookInfo> booksInBasket, int clientId) {
         BasicBasketBookInfo book = null;
         for(BasicBasketBookInfo bookk : booksInBasket) {
             if(bookk.getTitle().equals(title)){
@@ -97,7 +93,7 @@ public class BasketDao extends BaseDao {
 
 
         if(quantity == 0) {
-            int id = getId(book.getId());
+            int id = getId(book.getId(), clientId);
             try(Connection connection = getConnection();
                 Statement statement = connection.createStatement()){
                 final String sql = "DELETE FROM basket WHERE (`id` = '" + id + "');";
@@ -120,8 +116,8 @@ public class BasketDao extends BaseDao {
 
     }
 
-    private int getId(int bookId) {
-        List<BasketBooksInfo> books = getBooksInBasket(DataHelper.getClientId());
+    private int getId(int bookId, int clientId) {
+        List<BasketBooksInfo> books = getBooksInBasket(clientId);
         for(BasketBooksInfo book : books) {
             if(book.getBookId() == bookId){
                 return book.getId();

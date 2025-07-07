@@ -65,3 +65,9 @@ button {
 button:hover {
     background-color: #3f6c77;
 }
+
+.wrong-data-info {
+    justify-self: center;
+    margin-top: 2%;
+    color: #882929;
+}

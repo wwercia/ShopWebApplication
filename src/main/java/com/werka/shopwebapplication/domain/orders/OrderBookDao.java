@@ -1,6 +1,5 @@
 package com.werka.shopwebapplication.domain.orders;
 
-import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.CurrentOrderId;
 import com.werka.shopwebapplication.domain.common.BaseDao;
 
@@ -46,12 +45,12 @@ public class OrderBookDao extends BaseDao {
         return result;
     }
 
-    public void saveOrder(int bookId, int quantity) {
+    public void saveOrder(int bookId, int quantity, int clientId) {
         final String sql = "INSERT INTO orders (book_id, client_id, order_id, quantity) VALUES (?, ?, ?, ?)";
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, bookId);
-            statement.setInt(2, DataHelper.getClientId());
+            statement.setInt(2, clientId);
             statement.setInt(3, CurrentOrderId.getOrderId());
             statement.setInt(4, quantity);
             statement.executeUpdate();
@@ -75,7 +74,5 @@ public class OrderBookDao extends BaseDao {
         }
         return resultList;
     }
-
-
 
 }

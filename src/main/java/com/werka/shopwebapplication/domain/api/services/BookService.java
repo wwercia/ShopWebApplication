@@ -1,6 +1,5 @@
 package com.werka.shopwebapplication.domain.api.services;
 
-import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.CurrentOrderId;
 import com.werka.shopwebapplication.domain.api.*;
 import com.werka.shopwebapplication.domain.basket.Basket;
@@ -96,14 +95,13 @@ public class BookService {
                 .map(BookBasicMapper::map);
     }
 
-    public void saveBook(String title) {
+    public void saveBook(String title, int clientId) {
         BookBasicInfo bookBasicInfo = findBookBasicInfoByTitle(title).orElseThrow();
-        int clientId = DataHelper.getClientId();
         basketDao.saveBook(new Basket(clientId, bookBasicInfo.getId()));
     }
 
-    public double getOrderTotal() {
-        List<BasicBasketBookInfo> books = getBooksInBasket(DataHelper.getClientId());
+    public double getOrderTotal(int clientId) {
+        List<BasicBasketBookInfo> books = getBooksInBasket(clientId);
         BigDecimal total = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_EVEN);
         for(BasicBasketBookInfo book : books) {
             total = total.add(book.getPrice());
@@ -111,9 +109,9 @@ public class BookService {
         return total.doubleValue();
     }
 
-    public void updateBookQuantity(String title, int quantity) {
-        List<BasicBasketBookInfo> booksInBasket = getBooksInBasket(DataHelper.getClientId());
-        basketDao.updateBookQuantity(title, quantity, booksInBasket);
+    public void updateBookQuantity(String title, int quantity, int clientId) {
+        List<BasicBasketBookInfo> booksInBasket = getBooksInBasket(clientId);
+        basketDao.updateBookQuantity(title, quantity, booksInBasket, clientId);
     }
 
     public List<BookBasicInfo> findBooksInSeries(BookFullInfo book) {

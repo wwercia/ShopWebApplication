@@ -1,6 +1,5 @@
 package com.werka.shopwebapplication.domain.api.services;
 
-import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.address.ClientAddressData;
 import com.werka.shopwebapplication.domain.address.ClientAddressDataDao;
 import com.werka.shopwebapplication.domain.api.ClientAddressDataInfo;
@@ -15,12 +14,13 @@ public class ClientService {
     private final ClientDAO clientDAO = new ClientDAO();
     private final ClientAddressDataDao addressDataDao = new ClientAddressDataDao();
 
-    public boolean isLoginDataCorrect(String email, String password) {
+    public Client login(String email, String password) {
         if (email != null && !email.isEmpty() && password != null && !password.isEmpty()) {
-            return clientDAO.isFoundClientByMailAndPass(email, password);
-        }else {
-            return false;
+            if(clientDAO.isFoundClientByMailAndPass(email, password)) {
+                return clientDAO.getClientDataByClientEmail(email);
+            }
         }
+        return null;
     }
 
     public boolean isRegistrationDataCorrect(String name, String surname, String email, String password) {
@@ -40,21 +40,23 @@ public class ClientService {
         }
     }
 
-    public void saveClient(String name, String surname, String email, String password) {
+    public Client saveClient(String name, String surname, String email, String password) {
         Client client = new Client(-1, name, surname, email, password);
-        clientDAO.save(client);
+        int id = clientDAO.save(client);
+        client.setId(id);
+        return client;
     }
 
-    public void updateClientData(String name, String surname) {
-        clientDAO.updateClientNameAndSurname(name, surname);
+    public void updateClientData(String name, String surname, int clientId) {
+        clientDAO.updateClientNameAndSurname(name, surname, clientId);
     }
 
-    public void updateClientAddressData(String phoneNumber, String address, String town, String postcode) {
-        addressDataDao.updateAddress(phoneNumber, address, town, postcode);
+    public void updateClientAddressData(String phoneNumber, String address, String town, String postcode, int clientId) {
+        addressDataDao.updateAddress(phoneNumber, address, town, postcode, clientId);
     }
 
-    public Optional<ClientAddressDataInfo> getClientAddressData() {
-        ClientAddressData data = addressDataDao.getClientAddressDataByClientId(DataHelper.getClientId());
+    public Optional<ClientAddressDataInfo> getClientAddressData(int clientId) {
+        ClientAddressData data = addressDataDao.getClientAddressDataByClientId(clientId);
         if(data != null) {
             Optional<ClientAddressData> dataReadyToMap = Optional.of(data);
             return dataReadyToMap.map(AddressInfoMapper::map);
@@ -63,8 +65,8 @@ public class ClientService {
         }
     }
 
-    public Optional<ClientInfo> getClientInfo() {
-        Client data = clientDAO.getClientDataByClientId(DataHelper.getClientId());
+    public Optional<ClientInfo> getClientInfo(int clientId) {
+        Client data = clientDAO.getClientDataByClientId(clientId);
         if(data != null) {
             data.setPassword(codePassword(data.getPassword()));
             Optional<Client> dataReadyToMap = Optional.of(data);
@@ -78,8 +80,8 @@ public class ClientService {
         return password.replaceAll(".", "*");
     }
 
-    public void changePassword(String newPassword) {
-        clientDAO.updatePassword(newPassword);
+    public void changePassword(String newPassword, int clientId) {
+        clientDAO.updatePassword(newPassword, clientId);
     }
 
     public void saveClientAddressInfo(ClientAddressData clientAddressData) {

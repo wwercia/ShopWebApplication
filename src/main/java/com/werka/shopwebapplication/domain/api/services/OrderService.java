@@ -1,11 +1,9 @@
 package com.werka.shopwebapplication.domain.api.services;
 
-import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.CurrentOrderId;
 import com.werka.shopwebapplication.domain.api.*;
 import com.werka.shopwebapplication.domain.api.orders.OrderBookInfo;
 import com.werka.shopwebapplication.domain.api.orders.OrderFullInfo;
-import com.werka.shopwebapplication.domain.api.orders.OrdersInfo;
 import com.werka.shopwebapplication.domain.api.orders.ordersPage.OrderedBook;
 import com.werka.shopwebapplication.domain.api.orders.ordersPage.SingleOrderInfo;
 import com.werka.shopwebapplication.domain.basket.BasketDao;
@@ -29,9 +27,9 @@ public class OrderService {
     private final BasketDao basketDao = new BasketDao();
     private final BookDao bookDao = new BookDao();
 
-    public OrderFullInfo getOrderInfo() {
-        List<BasicBasketBookInfo> books = bookService.getBooksInBasket(DataHelper.getClientId());
-        double totalPrice = bookService.getOrderTotal();
+    public OrderFullInfo getOrderInfo(int clientId) {
+        List<BasicBasketBookInfo> books = bookService.getBooksInBasket(clientId);
+        double totalPrice = bookService.getOrderTotal(clientId);
         DeliveryMethod deliveryMethod = bookService.getDeliveryMethod();
         return new OrderFullInfo(books, totalPrice, deliveryMethod);
     }
@@ -47,19 +45,19 @@ public class OrderService {
         }
     }
 
-    public void saveOrder() {
-        for(BasicBasketBookInfo book : bookService.getBooksInBasket(DataHelper.getClientId())) {
-            orderDao.saveOrder(book.getId(), book.getQuantity());
+    public void saveOrder(int clientId) {
+        for(BasicBasketBookInfo book : bookService.getBooksInBasket(clientId)) {
+            orderDao.saveOrder(book.getId(), book.getQuantity(), clientId);
         }
     }
 
-    public void removeBooksFromBasket() {
-        for(BasketBooksInfo book : basketDao.getBooksInBasket(DataHelper.getClientId())) {
+    public void removeBooksFromBasket(int clientId) {
+        for(BasketBooksInfo book : basketDao.getBooksInBasket(clientId)) {
             basketDao.removeBookFromBasket(book.getBookId());
         }
     }
 
-    public List<SingleOrderInfo> getOrders() {
+    public List<SingleOrderInfo> getOrders(int clientId) {
 
         List<SingleOrderInfo> result = new ArrayList<>();
         List<Order> orders = orderDao.findAll();
@@ -68,7 +66,7 @@ public class OrderService {
         int orderId = 0;
 
         for(Order order : orders) {
-            if(order.getClientId() == DataHelper.getClientId()){
+            if(order.getClientId() == clientId){
                 if(orderId == 0)
                     orderId = order.getOrderId();
 

@@ -3,6 +3,7 @@ package com.werka.shopwebapplication.client.rest.account;
 import com.werka.shopwebapplication.domain.api.ClientAddressDataInfo;
 import com.werka.shopwebapplication.domain.api.ClientInfo;
 import com.werka.shopwebapplication.domain.api.services.ClientService;
+import com.werka.shopwebapplication.domain.client.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,6 +25,8 @@ public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Client currentClient = (Client) request.getSession().getAttribute("client");
+
         String currentPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");
         String confirmNewPassword = request.getParameter("confirmNewPassword");
@@ -32,10 +35,10 @@ public class ChangePasswordController extends HttpServlet {
             if(clientService.isPasswordCorrect(currentPassword)){
 
                 request.setAttribute("wrongData", "");
-                clientService.changePassword(newPassword);
+                clientService.changePassword(newPassword, currentClient.getId());
 
-                ClientInfo clientInfo = clientService.getClientInfo().orElseThrow();
-                ClientAddressDataInfo clientAddress = clientService.getClientAddressData().orElseThrow();
+                ClientInfo clientInfo = clientService.getClientInfo(currentClient.getId()).orElseThrow();
+                ClientAddressDataInfo clientAddress = clientService.getClientAddressData(currentClient.getId()).orElseThrow();
                 request.setAttribute("email", clientInfo.getEmail());
                 request.setAttribute("password", clientInfo.getPassword());
                 request.setAttribute("name", clientInfo.getName());

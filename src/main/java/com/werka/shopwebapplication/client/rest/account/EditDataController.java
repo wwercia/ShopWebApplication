@@ -3,6 +3,7 @@ package com.werka.shopwebapplication.client.rest.account;
 import com.werka.shopwebapplication.domain.api.ClientAddressDataInfo;
 import com.werka.shopwebapplication.domain.api.ClientInfo;
 import com.werka.shopwebapplication.domain.api.services.ClientService;
+import com.werka.shopwebapplication.domain.client.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,8 +19,10 @@ public class EditDataController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ClientInfo clientInfo = clientService.getClientInfo().orElseThrow();
-        ClientAddressDataInfo clientAddress = clientService.getClientAddressData().orElseThrow();
+        Client currentClient = (Client) request.getSession().getAttribute("client");
+
+        ClientInfo clientInfo = clientService.getClientInfo(currentClient.getId()).orElseThrow();
+        ClientAddressDataInfo clientAddress = clientService.getClientAddressData(currentClient.getId()).orElseThrow();
         request.setAttribute("email", clientInfo.getEmail());
         request.setAttribute("password", clientInfo.getPassword());
         request.setAttribute("name", clientInfo.getName());
@@ -33,6 +36,8 @@ public class EditDataController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Client currentClient = (Client) request.getSession().getAttribute("client");
+
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String phoneNumber = request.getParameter("phoneNumber");
@@ -40,8 +45,8 @@ public class EditDataController extends HttpServlet {
         String town = request.getParameter("town");
         String postcode = request.getParameter("postcode");
 
-        clientService.updateClientData(name, surname);
-        clientService.updateClientAddressData(phoneNumber, address, town, postcode);
+        clientService.updateClientData(name, surname, currentClient.getId());
+        clientService.updateClientAddressData(phoneNumber, address, town, postcode, currentClient.getId());
         response.sendRedirect(request.getContextPath() + "/account");
     }
 }

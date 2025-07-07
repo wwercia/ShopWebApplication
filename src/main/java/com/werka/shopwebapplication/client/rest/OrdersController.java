@@ -3,6 +3,7 @@ package com.werka.shopwebapplication.client.rest;
 import com.werka.shopwebapplication.domain.api.orders.OrderBookInfo;
 import com.werka.shopwebapplication.domain.api.orders.ordersPage.SingleOrderInfo;
 import com.werka.shopwebapplication.domain.api.services.OrderService;
+import com.werka.shopwebapplication.domain.client.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,8 +21,9 @@ public class OrdersController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        Client currentClient = (Client) request.getSession().getAttribute("client");
 
-        List<SingleOrderInfo> result = orderService.getOrders();
+        List<SingleOrderInfo> result = orderService.getOrders(currentClient.getId());
         Collections.reverse(result);
 
         if(result.isEmpty()){

@@ -3,6 +3,7 @@ package com.werka.shopwebapplication.client.rest.account;
 import com.werka.shopwebapplication.domain.api.ClientAddressDataInfo;
 import com.werka.shopwebapplication.domain.api.ClientInfo;
 import com.werka.shopwebapplication.domain.api.services.ClientService;
+import com.werka.shopwebapplication.domain.client.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,8 +20,10 @@ public class AccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ClientInfo clientInfo = clientService.getClientInfo().orElseThrow();
-        ClientAddressDataInfo clientAddress = clientService.getClientAddressData().orElseThrow();
+        Client currentClient = (Client) request.getSession().getAttribute("client");
+
+        ClientInfo clientInfo = clientService.getClientInfo(currentClient.getId()).orElseThrow();
+        ClientAddressDataInfo clientAddress = clientService.getClientAddressData(currentClient.getId()).orElseThrow();
 
         request.setAttribute("email", clientInfo.getEmail());
         request.setAttribute("password", clientInfo.getPassword());

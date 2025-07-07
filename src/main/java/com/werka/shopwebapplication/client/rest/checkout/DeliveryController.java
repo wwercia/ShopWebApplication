@@ -2,6 +2,7 @@ package com.werka.shopwebapplication.client.rest.checkout;
 
 import com.werka.shopwebapplication.domain.api.services.BookService;
 import com.werka.shopwebapplication.domain.api.services.OrderService;
+import com.werka.shopwebapplication.domain.client.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,8 +24,9 @@ public class DeliveryController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Client currentClient = (Client) request.getSession().getAttribute("client");
 
-        if(bookService.getOrderTotal() == 0) {
+        if(bookService.getOrderTotal(currentClient.getId()) == 0) {
             response.sendRedirect(request.getContextPath() + "/basket");
             return;
         }

@@ -1,6 +1,5 @@
 package com.werka.shopwebapplication.domain.address;
 
-import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.common.BaseDao;
 import java.sql.*;
 
@@ -50,7 +49,7 @@ public class ClientAddressDataDao extends BaseDao {
         }
     }
 
-    public void updateAddress(String phoneNumber, String address, String town, String postcode) {
+    public void updateAddress(String phoneNumber, String address, String town, String postcode, int clientId) {
         final String sql = "UPDATE addresses SET `phone_number` = ?, address = ?, town = ?, postcode = ? WHERE `client_id` = ?";
 
         try (Connection connection = getConnection();
@@ -59,7 +58,7 @@ public class ClientAddressDataDao extends BaseDao {
             statement.setString(2, address);
             statement.setString(3, town);
             statement.setString(4, postcode);
-            statement.setInt(5, DataHelper.getClientId());
+            statement.setInt(5, clientId);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

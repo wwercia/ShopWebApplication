@@ -1,8 +1,8 @@
 package com.werka.shopwebapplication.client.rest.basket;
 
-import com.werka.shopwebapplication.config.DataHelper;
 import com.werka.shopwebapplication.domain.api.BasicBasketBookInfo;
 import com.werka.shopwebapplication.domain.api.services.BookService;
+import com.werka.shopwebapplication.domain.client.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,41 +19,39 @@ public class BasketController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setBooksAttributes(req);
-        req.setAttribute("orderTotal", bookService.getOrderTotal());
+        Client currentClient = (Client) req.getSession().getAttribute("client");
+        setBooksAttributes(req, currentClient);
+        req.setAttribute("orderTotal", bookService.getOrderTotal(currentClient.getId()));
         req.getRequestDispatcher("/WEB-INF/pages/basket.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Client currentClient = (Client) req.getSession().getAttribute("client");
         String title = req.getParameter("bookTitle");
-        bookService.saveBook(title);
+        bookService.saveBook(title, currentClient.getId());
 
-        // Pobierz URL poprzedniej strony
+        // get url of previous page
         String referer = req.getHeader("Referer");
 
-        // Przekieruj użytkownika na poprzednią stronę
+        // redirect client to the previous page
         if (referer != null) {
             resp.sendRedirect(referer);
         } else {
-            // Jeśli brak referera, przekieruj na domyślną stronę
+            // if there is no referer redirect to default page
             resp.sendRedirect("/WEB-INF/pages/products.jsp");
         }
-
-        //setBooksAttributes(req);
-        //req.setAttribute("orderTotal", bookService.getOrderTotal());
-        //req.getRequestDispatcher("/WEB-INF/pages/basket.jsp").forward(req, resp);
     }
 
-    private List<BasicBasketBookInfo> getBooksFromBasket() {
-        return bookService.getBooksInBasket(DataHelper.getClientId());
+    private List<BasicBasketBookInfo> getBooksFromBasket(int clientId) {
+        return bookService.getBooksInBasket(clientId);
     }
 
-    private void setBooksAttributes(HttpServletRequest req) {
-        List<BasicBasketBookInfo> books =  getBooksFromBasket();
+    private void setBooksAttributes(HttpServletRequest req, Client currentClient) {
+        List<BasicBasketBookInfo> books =  getBooksFromBasket(currentClient.getId());
         if (!books.isEmpty()) {
             req.setAttribute("areBooksInBasket", "true");
-            req.setAttribute("resultBooks", getBooksFromBasket());
+            req.setAttribute("resultBooks", getBooksFromBasket(currentClient.getId()));
         } else {
             req.setAttribute("areBooksInBasket", "false");
         }

@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <% } else { %>
-                    <div class="background"></div>
+                        <div class="background"></div>
                     <% } %>
                 </div>
 
