@@ -8,7 +8,7 @@ It allows users to browse and search books by title or category, add books to th
 
 ## Login and Registration
 
-![Login and Registration](images/loginOrRegister.png)
+![Login and Registration](images/logInOrRegister.png)
 
 ---
 
